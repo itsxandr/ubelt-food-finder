@@ -1,0 +1,20 @@
+[
+  {
+    "id": "FF-001",
+    "name": "Dimsum Treats Dapitan",
+    "latitude": 14.610619075942752,
+    "longitude": 120.98700949103933, 
+    "price_category": 1,
+    "vibe_tags": ["Petsa de Peligro", "Pang-Bulking"],
+    "address": "1210 Asturias St."
+  },
+  {
+    "id": "FF-002",
+    "name": "24 Chicken P. Noval",
+    "latitude": 14.6085,
+    "longitude": 120.9895,
+    "price_category": 2,
+    "vibe_tags": ["Gym Bro Approved", "Pang-Bulking"],
+    "address": "1173 Padre Noval St."
+  }
+]
