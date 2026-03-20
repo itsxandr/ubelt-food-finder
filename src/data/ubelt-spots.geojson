@@ -1,0 +1,3804 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "FF-001",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9871059,
+          14.6086146
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-001",
+        "Name": "Albeth Bakehouse",
+        "Address": "\"1206 J. Barlin Street",
+        "Price_Category": null,
+        "Vibe_Tags": [
+          "Gym Bro Approved"
+        ],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "1206 J. Barlin St"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-003",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9871059,
+          14.6086146
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-003",
+        "Name": "Coffeepages",
+        "Address": "\"1233 J Barlin St",
+        "Price_Category": null,
+        "Vibe_Tags": [
+          "Study Friendly"
+        ],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-004",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9865558,
+          14.6081309
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-004",
+        "Name": "MANG TOOTZ Foodhouse",
+        "Address": "\"1104 Barlin St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-006",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9916324,
+          14.6123077
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-006",
+        "Name": "0402 Coffee",
+        "Address": "\"1060 Dos Castillas St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-007",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9920667,
+          14.6190591
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-007",
+        "Name": "12Hr Cold Brew",
+        "Address": "\"915 Kundiman St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-008",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9959167,
+          14.6124379
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-008",
+        "Name": "1871 Cafe",
+        "Address": "\"1871 Espana",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-009",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9878954,
+          14.6083299
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-009",
+        "Name": "24 Chicken P. Noval-Dapitan UST",
+        "Address": "\"1173 Padre Noval St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-011",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.989239,
+          14.6127457
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-011",
+        "Name": "7/11 - Dapitan Convenience Store",
+        "Address": "\"1521 Dapitan St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-013",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.0608665,
+          14.5754337
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-013",
+        "Name": "Acustica Bistro",
+        "Address": "\"2nd floor",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "#1508 España Boulevard"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-014",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.0295303,
+          14.5612035
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-014",
+        "Name": "AffiniTea",
+        "Address": "\"1209",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-016",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9828141,
+          14.5904284
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-016",
+        "Name": "Al Jograts Persian Grill",
+        "Address": "\"1226-A Concepcion St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-018",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9960243,
+          14.6017842
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-018",
+        "Name": "Arirang Hotdog",
+        "Address": "\"870 M.F. Jhocson",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-020",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9803621,
+          14.5904492
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-020",
+        "Name": "Ate Rica's Bacsilog",
+        "Address": "\"1st Floor",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-021",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9698623,
+          14.6221455
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-021",
+        "Name": "BaaBaa Thai Tea",
+        "Address": "\"Zone 046",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "corner Rosarito St"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-022",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9878954,
+          14.6083299
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-022",
+        "Name": "BALDOKS",
+        "Address": "\"864 Padre Noval St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-024",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.0153705,
+          14.6414223
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-024",
+        "Name": "Belden Unlimited Wings and Rice",
+        "Address": "\"1012 Tolentino St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-025",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9877741,
+          14.6121285
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-025",
+        "Name": "Beom Sik Dang Bistro",
+        "Address": "1214 Antonio St.",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-026",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.987511,
+          14.6118913
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-026",
+        "Name": "Big Roy’s Boodle Fight",
+        "Address": "\"1240 Asturias St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-028",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9928832,
+          14.6108541
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-028",
+        "Name": "Black Scoop Cafe Dos Castillas UST",
+        "Address": "\"1151 Dos Castillas St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-030",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9877692,
+          14.6113356
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-030",
+        "Name": "Bleu Yogurt",
+        "Address": "\"1359 Dapitan St. Sampaloc",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "1008 Metro Manila\""
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-031",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9803621,
+          14.5904492
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-031",
+        "Name": "Bo’s Coffee - Pacific Skyloft",
+        "Address": "\"1160",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-032",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9871708,
+          14.6120463
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-032",
+        "Name": "Bok's Chicken",
+        "Address": "\"1245 Asturias St.",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "1245 Asturias St"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-033",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.0608665,
+          14.5754337
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-033",
+        "Name": "Bonchon Chicken",
+        "Address": "\"2nd Floor",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-034",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9935457,
+          14.6144548
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-034",
+        "Name": "Boss K Steakhouse",
+        "Address": "\"1765 Piy Margal St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-035",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9940623,
+          14.6022037
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-035",
+        "Name": "Boss Samgy Espanya",
+        "Address": "\"Sampaloc",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Ground Floor"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-037",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.000878,
+          14.6169382
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-037",
+        "Name": "Bulalohan sa España",
+        "Address": "\"España Blvd",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-038",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.988058,
+          14.6123837
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-038",
+        "Name": "Bully Buffalo",
+        "Address": "\"1219 V Concepcion St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-039",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9889595,
+          14.6122575
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-039",
+        "Name": "Calle Cafe by Don Gabriel",
+        "Address": "\"1343 Dapitan St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-040",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.973809,
+          14.6231854
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-040",
+        "Name": "Carinderia ni Angelica",
+        "Address": "\"Zone 48",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-041",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9803621,
+          14.5904492
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-041",
+        "Name": "Catchy Diner",
+        "Address": "\"Unit 2E",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-042",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9834012,
+          14.5907186
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-042",
+        "Name": "Cely’s Canteen",
+        "Address": "\"1242 Concepcion St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-043",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9960243,
+          14.6017842
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-043",
+        "Name": "Chaboba PH",
+        "Address": "\"870 M.F. Jhocson",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-044",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.987511,
+          14.6118913
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-044",
+        "Name": "Chaofan King",
+        "Address": "\"1241 Asturias St.",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "1241 Asturias St"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-045",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9949858,
+          14.6177536
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-045",
+        "Name": "Chat’s Pancitan sa Dapitan",
+        "Address": "\"1601 Dapitan Street Sampaloc Manila",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-047",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.987511,
+          14.6118913
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-047",
+        "Name": "Chew York",
+        "Address": "\"1235 Asturias Street",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila\""
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-049",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9939829,
+          14.6046812
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-049",
+        "Name": "Chie’s Burger",
+        "Address": "\"1515 F. jhocson st. sampaloc manila",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Philippines\""
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-053",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.0290522,
+          14.6706854
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-053",
+        "Name": "Coco Lemon",
+        "Address": "\"1222 Delos Reyes St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-054",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.0581303,
+          14.5846997
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-054",
+        "Name": "Coffee Indulgence",
+        "Address": "\"Ground Floor 1051",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-055",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9878954,
+          14.6083299
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-055",
+        "Name": "COW WOW Sausage Haus",
+        "Address": "\"937 Padre Noval St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-057",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.000878,
+          14.6169382
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-057",
+        "Name": "D’ Master ChaoLong Haus",
+        "Address": "\"1831 España Blvd",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-058",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9803621,
+          14.5904492
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-058",
+        "Name": "D’Cream Coffee and Tea",
+        "Address": "\"955",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-059",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.0981959,
+          14.6424292
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-059",
+        "Name": "D’Lax Pancit Batil Patong and Eatery",
+        "Address": "\"1560 Florentino St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-060",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.000878,
+          14.6169382
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-060",
+        "Name": "Dadudz Unli Wings",
+        "Address": "\"2005 España Blvd",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-061",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9869847,
+          14.6113983
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-061",
+        "Name": "Daily by Bo’s Coffee",
+        "Address": "\"1243-A Navarra St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-063",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9887445,
+          14.6029161
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-063",
+        "Name": "Deodato’s Pizza by Esai",
+        "Address": "\"S.H. Loyola",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-068",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.000878,
+          14.6169382
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-068",
+        "Name": "Drip Kofi",
+        "Address": "\"España Blvd",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-069",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.988955,
+          14.6051077
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-069",
+        "Name": "Duke's Castle Cafe",
+        "Address": "\"1080 Padre Campa St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-070",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9803621,
+          14.5904492
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-070",
+        "Name": "EggStop",
+        "Address": "\"3/F",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "The One Grand Centre"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-071",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9974533,
+          14.616067
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-071",
+        "Name": "España Grill House",
+        "Address": "\"2050 Instruccion Street",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-072",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9803621,
+          14.5904492
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-072",
+        "Name": "Eva's",
+        "Address": "\"1st Floor",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-073",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.0155448,
+          14.6394845
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-073",
+        "Name": "Everycup",
+        "Address": "\"1125 Tolentino St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-074",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9803621,
+          14.5904492
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-074",
+        "Name": "EZPresso",
+        "Address": "\"1st Floor",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-075",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.0155448,
+          14.6394845
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-075",
+        "Name": "Fat Gorilla",
+        "Address": "\"1071 Tolentino St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-077",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9909338,
+          14.6058878
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-077",
+        "Name": "Four Monkeys Pub",
+        "Address": "\"1274 S.H.loyola St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-078",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9863425,
+          14.6076264
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-078",
+        "Name": "Gang Gang Chicken",
+        "Address": "\"1075 Padre Campa St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-079",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9877741,
+          14.6121285
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-079",
+        "Name": "Garaje Grill",
+        "Address": "\"1251 Antonio St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-080",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.000878,
+          14.6169382
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-080",
+        "Name": "Goldilocks",
+        "Address": "\"873 España Blvd",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-081",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9960243,
+          14.6017842
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-081",
+        "Name": "GongCha",
+        "Address": "\"870 M.F. Jhocson",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-082",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9889595,
+          14.6122575
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-082",
+        "Name": "Good Munch So Munch Better",
+        "Address": "\"1345 Dapitan St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-083",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9861602,
+          14.6097516
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-083",
+        "Name": "Haven’s Brew Dapitan",
+        "Address": "\"1651 Dapitan St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-084",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.0155448,
+          14.6394845
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-084",
+        "Name": "Heyday Cafe",
+        "Address": "\"1070 Tolentino St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-085",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9863425,
+          14.6076264
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-085",
+        "Name": "Hidden Hatch Hookah Bar & Cafe",
+        "Address": "\"1075 Padre Campa St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-087",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.0290522,
+          14.6706854
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-087",
+        "Name": "HJK MNL",
+        "Address": "\"1222 Delos Reyes St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-089",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9872041,
+          14.612728
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-089",
+        "Name": "Ice-Thetic",
+        "Address": "\"1207 Antonio St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "1207 Antonio St"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-090",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9803621,
+          14.5904492
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-090",
+        "Name": "Icebergs",
+        "Address": "\"1st Floor",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-092",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.000878,
+          14.6169382
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-092",
+        "Name": "Inang Maria Eatery",
+        "Address": "\"1969 España Blvd",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-093",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9887445,
+          14.6029161
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-093",
+        "Name": "J-Cobz Bistro",
+        "Address": "\"1266 S.H.loyola St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-094",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9873329,
+          14.6142094
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-094",
+        "Name": "Jack Wings Unlimited Wings",
+        "Address": "\"1221 Gelinos St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-095",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9803621,
+          14.5904492
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-095",
+        "Name": "James and Che’s Bbq House",
+        "Address": "\"1251",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-096",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.990026,
+          14.6132429
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-096",
+        "Name": "Jollibee - Lacson Branch",
+        "Address": "\"1523 Dapitan St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-097",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9710766,
+          14.6057029
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-097",
+        "Name": "Jollibee - P. Noval Branch",
+        "Address": "\"Level 1",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Corner M.F. Jhocson St"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-098",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.096439,
+          14.6512353
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-098",
+        "Name": "Juana’s Budbod",
+        "Address": "\"1805",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-099",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.0183449,
+          14.5620928
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-099",
+        "Name": "K-Street",
+        "Address": "\"1200",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Corner Lacson Ave"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-100",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9869847,
+          14.6113983
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-100",
+        "Name": "Kainan sa Navarra",
+        "Address": "\"1226 Navarra St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-101",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9772661,
+          14.5873208
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-101",
+        "Name": "Kanto Freestyle Breakfast",
+        "Address": "\"1234 General",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-102",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.992547,
+          14.6059326
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-102",
+        "Name": "Kanto Tayo",
+        "Address": "\"1008 Moret St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-103",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9803621,
+          14.5904492
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-103",
+        "Name": "Kanzen Sushi Roll - P. Noval",
+        "Address": "\"1173",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-104",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9803621,
+          14.5904492
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-104",
+        "Name": "Karaage Koto",
+        "Address": "\"1217",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-106",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9698623,
+          14.6221455
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-106",
+        "Name": "KFC - Dapitan Branch",
+        "Address": "\"Zone 46",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Concepcion St"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-107",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9684306,
+          14.6317624
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-107",
+        "Name": "KFC - España Branch",
+        "Address": "\"Zone 052",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-108",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.988955,
+          14.6051077
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-108",
+        "Name": "Kix N’ Bolz",
+        "Address": "\"Padre Campa St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-110",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9868706,
+          14.6106189
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-110",
+        "Name": "Koomi PH - Pacific Suites",
+        "Address": "\"Pacific Suites",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-113",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9803621,
+          14.5904492
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-113",
+        "Name": "Kyukyu Ramen 99",
+        "Address": "\"1st Floor",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-115",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.987511,
+          14.6118913
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-115",
+        "Name": "La Frontera",
+        "Address": "\"1240 Asturias St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-116",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9889595,
+          14.6122575
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-116",
+        "Name": "Las Tres Marias Deliciosa Lasana Manila Branch",
+        "Address": "\"1177 Dapitan St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-117",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9803621,
+          14.5904492
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-117",
+        "Name": "Lawson",
+        "Address": "\"1st Floor",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-118",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9900427,
+          14.6060872
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-118",
+        "Name": "LEGIT Restaurant",
+        "Address": "\"981 Padre Noval St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-119",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.000305,
+          14.6122026
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-119",
+        "Name": "Lembest Lechon Sampaloc",
+        "Address": "\"1765 J. Fajardo St. Sampaloc 1008 Manila",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "1765 J. Fajardo St"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-120",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9960243,
+          14.6017842
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-120",
+        "Name": "Lil Orbits",
+        "Address": "\"870 M.F. Jhocson",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-122",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.0013517,
+          14.6043609
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-122",
+        "Name": "LODS PARES",
+        "Address": "\"1100 Vicente Cruz St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Quezon City"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-123",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9861602,
+          14.6097516
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-123",
+        "Name": "Lovelite",
+        "Address": "\"1355 Dapitan St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-125",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9868706,
+          14.6106189
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-125",
+        "Name": "Macao Imperial Tea",
+        "Address": "\"Pacific Suites",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-126",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9869847,
+          14.6113983
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-126",
+        "Name": "Make Your Own Cafe",
+        "Address": "\"1008 Navarra St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-127",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.0042879,
+          14.6061358
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-127",
+        "Name": "Mami Chula Cuisines",
+        "Address": "\"1247-A Rosarito St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-128",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9878954,
+          14.6083299
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-128",
+        "Name": "Mando’s Wing Shack",
+        "Address": "\"1045 Padre Noval St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-130",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9803621,
+          14.5904492
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-130",
+        "Name": "Mang Samgyupsal: Unlimited Fili-Korean BBQ",
+        "Address": "\"1498",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-133",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.000878,
+          14.6169382
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-133",
+        "Name": "MAV’s Burger",
+        "Address": "\"1907 España Blvd",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-134",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.000878,
+          14.6169382
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-134",
+        "Name": "McDonald’s",
+        "Address": "\"España Blvd",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-135",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9965386,
+          14.6055482
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-135",
+        "Name": "McDonald’s Lacson",
+        "Address": "\"Governor Forbes",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-139",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.000878,
+          14.6169382
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-139",
+        "Name": "Milk Tea 36.5°c",
+        "Address": "\"2135 España Blvd",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-140",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9871059,
+          14.6086146
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-140",
+        "Name": "Mina Mini Mart",
+        "Address": "\"1230 Barlin St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-141",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9960243,
+          14.6017842
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-141",
+        "Name": "Mondae Australian Yoghurt",
+        "Address": "\"870 M.F. Jhocson",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-142",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9863118,
+          14.4382493
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-142",
+        "Name": "Mr Sy Samgyupsal",
+        "Address": "\"857 M dela fuente st",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-143",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9877692,
+          14.6113356
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-143",
+        "Name": "Mr. Choi's Noodles",
+        "Address": "\"1359 Dapitan St. Sampaloc",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "1008 Metro Manila\""
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-144",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9900427,
+          14.6060872
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-144",
+        "Name": "Muhan Unlimited Samgyupsal",
+        "Address": "\"1053 Padre Noval",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-145",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.0155838,
+          14.56707
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-145",
+        "Name": "Mukbang Chicken PH",
+        "Address": "\"1205",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-146",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9803621,
+          14.5904492
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-146",
+        "Name": "Muramasa Japanese Restaurant",
+        "Address": "\"1st Floor",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-147",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9871059,
+          14.6086146
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-147",
+        "Name": "Nelly’s Eatery",
+        "Address": "\"1134 J. Barlin Street Sampaloc",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "1134 J. Barlin St"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-148",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.987511,
+          14.6118913
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-148",
+        "Name": "Nokk Nokk",
+        "Address": "\"1229 Asturias St.",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "1229 Asturias St"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-149",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9949858,
+          14.6177536
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-149",
+        "Name": "Oishiku Tabemoshou",
+        "Address": "\"1604 Dapitan St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-150",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9803621,
+          14.5904492
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-150",
+        "Name": "Okkim’s Unli Wings",
+        "Address": "\"915",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-151",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9865868,
+          14.6115888
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-151",
+        "Name": "P3K Cafe",
+        "Address": "\"1243 Navarra St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-152",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9803621,
+          14.5904492
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-152",
+        "Name": "Pancake House",
+        "Address": "\"1st Floor",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-154",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.000878,
+          14.6169382
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-154",
+        "Name": "Pickup Coffee",
+        "Address": "\"1310 España Blvd",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-155",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9922574,
+          14.6107344
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-155",
+        "Name": "Pizza Hut",
+        "Address": "\"Celestial Marie BLDG",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "820 A.H.Lacson St"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-157",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.996901,
+          14.6195009
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-157",
+        "Name": "Potato Corner",
+        "Address": "\"1343 Dapitan",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-158",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9803621,
+          14.5904492
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-158",
+        "Name": "Potato Giant",
+        "Address": "\"1st Floor",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-159",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9900427,
+          14.6060872
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-159",
+        "Name": "Quesarito Mexican Cocina",
+        "Address": "\"981 Padre Noval St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-160",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9803621,
+          14.5904492
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-160",
+        "Name": "QueSeraSera Cafe",
+        "Address": "\"GF",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "1173 Padre Noval St"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-162",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9941761,
+          14.6070746
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-162",
+        "Name": "Rabbit Hole",
+        "Address": "\"825 Extremadura st.",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila\""
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-163",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9878954,
+          14.6083299
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-163",
+        "Name": "Ramen Avenue",
+        "Address": "\"789 Padre Noval St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-164",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9873329,
+          14.6142094
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-164",
+        "Name": "Rancho’s Steakhouse",
+        "Address": "\"1232 Gelinos St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "1232 Gelinos St"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-165",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9870337,
+          14.613457
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-165",
+        "Name": "RarJap Rice N Box",
+        "Address": "\"1223 V Concepcion St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-167",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9803621,
+          14.5904492
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-167",
+        "Name": "Rice in a Box",
+        "Address": "\"1st Floor",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-169",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9903202,
+          14.6127743
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-169",
+        "Name": "Roof Manila",
+        "Address": "\"Pacific Skyloft",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-170",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9889595,
+          14.6122575
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-170",
+        "Name": "Royaltea 皇茶",
+        "Address": "\"1425 Dapitan St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-171",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9834012,
+          14.5907186
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-171",
+        "Name": "S.R. Thai Cuisine",
+        "Address": "\"1229 Concepcion St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-172",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9909338,
+          14.6058878
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-172",
+        "Name": "Sabaw Manila",
+        "Address": "\"1270 S.H.loyola St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-173",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9878954,
+          14.6083299
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-173",
+        "Name": "Sachon Asian Cuisine",
+        "Address": "\"862 Padre Noval St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila\""
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-174",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9935035,
+          14.6164115
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-174",
+        "Name": "Samgyup Night - Korean Grill & Seafood Fusion Unli Grill",
+        "Address": "\"1623 Dapitan St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-175",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9803621,
+          14.5904492
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-175",
+        "Name": "Santorini",
+        "Address": "\"981",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila\""
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-176",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9945071,
+          14.6091591
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-176",
+        "Name": "Seonlyang",
+        "Address": "\"Dos Castillas St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-177",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.98792,
+          14.6070887
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-177",
+        "Name": "Shakespeare",
+        "Address": "\"987 Tolentino St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-178",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9900427,
+          14.6060872
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-178",
+        "Name": "Shark’s",
+        "Address": "\"1015 Padre Noval St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-179",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9803621,
+          14.5904492
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-179",
+        "Name": "Sisig Hooray!",
+        "Address": "\"1st Floor",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-181",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9900427,
+          14.6060872
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-181",
+        "Name": "Smile To Go",
+        "Address": "\"965 Padre Noval St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "1015 Metro Manila\""
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-182",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9788378,
+          14.6316713
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-182",
+        "Name": "Starbucks",
+        "Address": "\"G/F",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Padre Noval St"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-183",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9803621,
+          14.5904492
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-183",
+        "Name": "Subway",
+        "Address": "\"1st Floor",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-185",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.987511,
+          14.6118913
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-185",
+        "Name": "Tako Ti Tea",
+        "Address": "\"1254 Asturias St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-186",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9883614,
+          14.611329
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-186",
+        "Name": "Takoyaken Takoyaki",
+        "Address": "UST Dapitan",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-187",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.987511,
+          14.6118913
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-187",
+        "Name": "Tantea",
+        "Address": "\"1240 Asturias St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-188",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9900427,
+          14.6060872
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-188",
+        "Name": "Tap N Chop",
+        "Address": "\"981 Padre Noval St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-189",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.0608665,
+          14.5754337
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-189",
+        "Name": "Tapa King",
+        "Address": "\"2nd Floor",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-191",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9875862,
+          14.6070551
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-191",
+        "Name": "Tapsi Hut",
+        "Address": "\"1148 I Delos Reyes St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-194",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.000878,
+          14.6169382
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-194",
+        "Name": "The Biryani Story",
+        "Address": "\"2139 España Blvd",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-195",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9900427,
+          14.6060872
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-195",
+        "Name": "The Food Truck Manila",
+        "Address": "\"1090 Padre Noval St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-196",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9803621,
+          14.5904492
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-196",
+        "Name": "The Original Pares Mami House - España Branch",
+        "Address": "\"2113",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "España Blvd"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-198",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9684306,
+          14.6317624
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-198",
+        "Name": "The Rooftop 11:11",
+        "Address": "\"Zone 52",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Corner Kundiman St"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-199",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9873329,
+          14.6142094
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-199",
+        "Name": "the tiger's den",
+        "Address": "\"1206 Gelinos St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-200",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9871059,
+          14.6086146
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-200",
+        "Name": "Tiger Winx - Barlin Street",
+        "Address": "\"1106 J Barlin St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-201",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9880471,
+          14.6126716
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-201",
+        "Name": "Tiger Winx - Concepcion Street",
+        "Address": "\"1240 Concepcion St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-202",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.990026,
+          14.6132429
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-202",
+        "Name": "Tomo Coffee",
+        "Address": "\"1427 Dapitan St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-204",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.0057039,
+          14.6050866
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-204",
+        "Name": "Turks",
+        "Address": "\"1218-1252 Rosarito St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-205",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.000878,
+          14.6169382
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-205",
+        "Name": "Uncle John’s - España",
+        "Address": "\"1224 España Blvd",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-206",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.988955,
+          14.6051077
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-206",
+        "Name": "Uno’s Steaks & Wine",
+        "Address": "\"1154 P Padre Campa St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-208",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9871059,
+          14.6086146
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-208",
+        "Name": "Vanitea Cafe",
+        "Address": "\"1207 J Barlin St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-209",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.973809,
+          14.6231854
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-209",
+        "Name": "Viranos Pizza",
+        "Address": "\"Zone 017",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Corner Piy Margal St"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-210",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.990026,
+          14.6132429
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-210",
+        "Name": "Wendy’s",
+        "Address": "\"1427 Dapitan St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-211",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9960243,
+          14.6017842
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-211",
+        "Name": "Wesley’s Wings Unlimited",
+        "Address": "\"870 M.F. Jhocson",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-213",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.991205,
+          14.6059268
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-213",
+        "Name": "Wingfinity",
+        "Address": "\"852 Galicia St",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-214",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9960243,
+          14.6017842
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-214",
+        "Name": "Yaki Yaki UST Branch",
+        "Address": "\"870 M.F. Jhocson",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-215",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9965386,
+          14.6055482
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-215",
+        "Name": "Yellow Cab Pizza Co.",
+        "Address": "\"Governor Forbes",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Lacson Ave"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-216",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9873441,
+          14.6078395
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-216",
+        "Name": "Zagu",
+        "Address": "\"1093 G. Tolentino Street",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Manila\""
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-217",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.039657,
+          14.7197265
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-217",
+        "Name": "Zahraa’s Halal Food",
+        "Address": "\"947",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "Sampaloc"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "FF-218",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.987511,
+          14.6118913
+        ]
+      },
+      "properties": {
+        "Place_ID": "FF-218",
+        "Name": "Zark's Burger / Ray's Hot Chicken",
+        "Address": "\"1240 Asturias St.",
+        "Price_Category": null,
+        "Vibe_Tags": [],
+        "Operating_Hours": null,
+        "Has_Sockets": false,
+        "Has_WiFi": false,
+        "Photo": null,
+        "Zone": "1240 Asturias St"
+      }
+    }
+  ]
+}

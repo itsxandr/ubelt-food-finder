@@ -1,96 +1,90 @@
-import { Map, Marker as WebMarker } from "pigeon-maps";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import maplibregl from "maplibre-gl";
+import "maplibre-gl/dist/maplibre-gl.css";
+import React, { useEffect, useRef } from "react";
 import { StyleSheet, View } from "react-native";
-
-// Threshold for detecting a zoom gesture vs. rounding noise
-const ZOOM_CHANGE_THRESHOLD = 0.1;
-// Delay after last zoom event before updating map center on touch devices
-const ZOOM_SETTLE_DELAY_MS = 300;
-
-const isTouchDevice = () =>
-  typeof window !== "undefined" &&
-  ("ontouchstart" in window || navigator.maxTouchPoints > 0);
 
 export default function MapComponent({
   allSpots,
   filteredSpots,
   activeFilter,
   center,
+  mapKey, // NEW: will force remount when Locate Me is clicked
 }: any) {
-  const [internalCenter, setInternalCenter] = useState(center);
-  const [zoom, setZoom] = useState(15);
-  const isUserInteractingRef = useRef(false);
-  const lastZoomRef = useRef(15);
-  const zoomSettleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const mapContainer = useRef<HTMLDivElement>(null);
+  const map = useRef<maplibregl.Map | null>(null);
 
   const displaySpots = activeFilter === "All" ? allSpots : filteredSpots;
 
-  const voyagerTiles = (x: number, y: number, z: number) =>
-    `https://basemaps.cartocdn.com/rastertiles/voyager/${z}/${x}/${y}${window.devicePixelRatio > 1 ? "@2x" : ""}.png`;
+  // OSM vector tiles (free, no API key needed)
+  const styleUrl = "https://demotiles.maplibre.org/style.json";
 
-  // When user zooms/drags, update internal state
-  const handleBoundsChanged = useCallback(
-    ({ center: newCenter, zoom: newZoom }: any) => {
-      isUserInteractingRef.current = true;
-      const isZooming =
-        Math.abs(newZoom - lastZoomRef.current) > ZOOM_CHANGE_THRESHOLD;
-      lastZoomRef.current = newZoom;
-      setZoom(newZoom);
-
-      if (isTouchDevice() && isZooming) {
-        // On mobile, debounce center updates during pinch-zoom to prevent drift
-        if (zoomSettleTimerRef.current) {
-          clearTimeout(zoomSettleTimerRef.current);
-        }
-        zoomSettleTimerRef.current = setTimeout(() => {
-          setInternalCenter(newCenter);
-        }, ZOOM_SETTLE_DELAY_MS);
-      } else {
-        setInternalCenter(newCenter);
-      }
-    },
-    [],
-  );
-
-  // Clear pending zoom-settle timer on unmount to avoid state updates on
-  // an unmounted component.
   useEffect(() => {
+    if (!mapContainer.current) return;
+
+    // Clean up previous map instance
+    if (map.current) {
+      map.current.remove();
+    }
+
+    // Create new map
+    map.current = new maplibregl.Map({
+      container: mapContainer.current,
+      style: styleUrl,
+      center: [center[1], center[0]], // [lng, lat]
+      zoom: 15,
+      minZoom: 12,
+      maxZoom: 19,
+    });
+
+    // Add markers when map loads
+    map.current.on("load", () => {
+      displaySpots.forEach((spot: any) => {
+        // Create popup
+        const popup = new maplibregl.Popup({ offset: 25 }).setHTML(
+          `
+          <div style="padding: 8px;">
+            <h3 style="margin: 0 0 4px 0; font-size: 14px;">${spot.name || spot.Name}</h3>
+            <p style="margin: 0; font-size: 12px; color: #666;">${spot.address || spot.Address}</p>
+          </div>
+          `,
+        );
+
+        // Create marker
+        const el = document.createElement("div");
+        el.style.width = "32px";
+        el.style.height = "32px";
+        el.style.backgroundImage =
+          "url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNPCIBDST0iMTYiIENZPSIxMiIgUj0iOCIgZmlsbD0iI0ZGNUE1RiIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjwvc3ZnPg==)";
+        el.style.backgroundSize = "contain";
+        el.style.backgroundRepeat = "no-repeat";
+        el.style.cursor = "pointer";
+
+        new maplibregl.Marker({ element: el })
+          .setLngLat([
+            spot.longitude || spot.Longitude,
+            spot.latitude || spot.Latitude,
+          ])
+          .setPopup(popup)
+          .addTo(map.current!);
+      });
+    });
+
     return () => {
-      if (zoomSettleTimerRef.current) {
-        clearTimeout(zoomSettleTimerRef.current);
+      if (map.current) {
+        map.current.remove();
       }
     };
-  }, []);
-
-  // When center prop changes (from Locate Me), reset to that location
-  useEffect(() => {
-    if (!isUserInteractingRef.current) {
-      setInternalCenter(center);
-    }
-    isUserInteractingRef.current = false;
-  }, [center]);
+  }, [mapKey, displaySpots]); // mapKey forces remount when Locate Me is clicked
 
   return (
     <View style={styles.mapWrapper}>
-      <Map
-        height={400}
-        center={internalCenter}
-        zoom={zoom}
-        onBoundsChanged={handleBoundsChanged}
-        provider={voyagerTiles}
-        minZoom={10}
-        maxZoom={19}
-      >
-        {displaySpots.map((spot: any) => (
-          <WebMarker
-            key={spot.id}
-            width={40}
-            anchor={[spot.latitude, spot.longitude]}
-            color="#FF5A5F"
-            onClick={() => alert(`${spot.name}\n${spot.address}`)}
-          />
-        ))}
-      </Map>
+      <div
+        ref={mapContainer}
+        style={{
+          width: "100%",
+          height: "100%",
+        }}
+      />
     </View>
   );
 }

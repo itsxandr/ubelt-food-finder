@@ -48,6 +48,7 @@ export default function MapScreen() {
   const [webCenter, setWebCenter] = useState<[number, number]>([
     14.6041, 120.9882,
   ]);
+  const [mapKey, setMapKey] = useState(0); // ← NEW: for MapLibre remount
   const snapPoints = useMemo(() => ["28%", "50%", "90%"], []);
 
   useEffect(() => {
@@ -87,7 +88,8 @@ export default function MapScreen() {
     const { latitude, longitude } = location.coords;
 
     if (Platform.OS === "web") {
-      setWebCenter([latitude, longitude]); // Updates the Pigeon Map
+      setWebCenter([latitude, longitude]);
+      setMapKey((prev) => prev + 1); // ← NEW: force map remount on web
     } else {
       mapRef.current?.animateToRegion(
         {
@@ -155,6 +157,8 @@ export default function MapScreen() {
         {/* MIDDLE: The Interactive Map with Locate Button */}
         <View style={styles.mapContainer}>
           <MapComponent
+            key={mapKey} // ← NEW
+            mapKey={mapKey} // ← NEW
             allSpots={allSpots}
             filteredSpots={filteredSpots}
             activeFilter={activeFilter}
@@ -210,10 +214,13 @@ export default function MapScreen() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <View style={styles.container}>
         <MapComponent
+          key={mapKey} // ← NEW
+          mapKey={mapKey} // ← NEW
           mapRef={mapRef}
           filteredSpots={filteredSpots}
           activeFilter={activeFilter}
           allSpots={allSpots}
+          center={webCenter}
         />
 
         {/* Floating Filter Bar */}
@@ -435,6 +442,14 @@ const styles = StyleSheet.create({
     color: "#1A1A1A",
     marginTop: 20,
     letterSpacing: -1,
+  },
+  logoPlaceholder: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    backgroundColor: "#FF5A5F",
+    justifyContent: "center",
+    alignItems: "center",
   },
   webPanel: {
     padding: 20,

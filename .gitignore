@@ -41,3 +41,8 @@ app-example
 # generated native folders
 /ios
 /android
+
+# Database files
+DB_FoodFinder_Production.csv
+geocoded_spots.json
+*.csv
