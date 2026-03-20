@@ -1,3 +1,4 @@
+import { getUbeltSpots } from "@/src/services/dataService";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import * as Location from "expo-location";
 import {
@@ -28,7 +29,6 @@ import {
 } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import MapComponent from "../../src/components/MapComponent";
-import { getUbeltSpots } from "../../src/services/dataService";
 
 // Standardized filters for the top bar
 const FILTERS = [
