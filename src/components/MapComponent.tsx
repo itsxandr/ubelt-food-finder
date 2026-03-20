@@ -1,40 +1,59 @@
+import { Map, Marker as WebMarker } from "pigeon-maps";
 import React from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
-export default function MapComponent({ allSpots }: any) {
+export default function MapComponent({
+  allSpots,
+  filteredSpots,
+  activeFilter,
+}: any) {
+  const center: [number, number] = [14.6041, 120.9882];
+  const displaySpots = activeFilter === "All" ? allSpots : filteredSpots;
+
+  // This function fetches the "Voyager" theme which looks like Google/Apple Maps
+  const voyagerTiles = (x: number, y: number, z: number) =>
+    `https://basemaps.cartocdn.com/rastertiles/voyager/${z}/${x}/${y}${window.devicePixelRatio > 1 ? "@2x" : ""}.png`;
+
   return (
     <View style={styles.webContainer}>
-      <Text style={styles.title}>U-Belt Food Finder (Web)</Text>
-      <ScrollView style={{ width: "100%" }}>
-        {allSpots.map((spot: any) => (
-          <View key={spot.id} style={styles.spotListItem}>
-            <Text style={styles.spotName}>{spot.name}</Text>
-            <Text style={styles.spotAddress}>{spot.address}</Text>
-          </View>
-        ))}
-      </ScrollView>
+      <View style={styles.mapWrapper}>
+        <Map
+          height={400}
+          defaultCenter={center}
+          defaultZoom={15}
+          provider={voyagerTiles} // This is the secret for the "Pro" look
+        >
+          {displaySpots.map((spot: any) => (
+            <WebMarker
+              key={spot.id}
+              width={40}
+              anchor={[spot.latitude, spot.longitude]}
+              color="#FF5A5F"
+              onClick={() => alert(`${spot.name}\n${spot.address}`)}
+            />
+          ))}
+        </Map>
+      </View>
+
+      <View style={styles.infoSection}>
+        <Text style={styles.title}>U-Belt Food Finder</Text>
+        <Text style={styles.subtitle}>
+          Instant Access • {displaySpots.length} {activeFilter} spots found
+        </Text>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  webContainer: {
-    flex: 1,
-    padding: 20,
-    paddingTop: 60,
-    backgroundColor: "#FFF",
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 20,
-    textAlign: "center",
-  },
-  spotListItem: {
-    padding: 15,
+  webContainer: { flex: 1, backgroundColor: "#FFF" },
+  mapWrapper: {
+    height: 400,
+    width: "100%",
     borderBottomWidth: 1,
     borderBottomColor: "#EEE",
   },
-  spotName: { fontSize: 18, fontWeight: "600" },
-  spotAddress: { color: "#666" },
+  infoSection: { padding: 20 },
+  title: { fontSize: 24, fontWeight: "bold", color: "#1A1A1A" },
+  subtitle: { fontSize: 14, color: "#FF5A5F", fontWeight: "600", marginTop: 5 },
 });
