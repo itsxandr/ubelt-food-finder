@@ -160,13 +160,6 @@ export default function MapScreen() {
             activeFilter={activeFilter}
             center={webCenter}
           />
-          {/* Floating Web Locate Button - anchored inside the map area */}
-          <TouchableOpacity
-            style={[styles.locateButton, styles.webLocateButton]}
-            onPress={goToMyLocation}
-          >
-            <Navigation size={24} color="white" />
-          </TouchableOpacity>
         </View>
 
         {/* BOTTOM: Feature Panel (Mimicking the Bottom Sheet) */}
@@ -201,6 +194,13 @@ export default function MapScreen() {
               </View>
             </View>
           ))}
+          {/* Floating Web Locate Button - anchored inside the map area */}
+          <TouchableOpacity
+            style={[styles.locateButton, styles.webLocateButton]}
+            onPress={goToMyLocation}
+          >
+            <Navigation size={24} color="white" />
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -313,8 +313,22 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   webLocateButton: {
-    bottom: 16,
-    zIndex: 10,
+    position: "absolute",
+    right: 20,
+    // Use a fixed pixel value instead of 35%.
+    // This places it exactly 20px above your bottom panel.
+    bottom: 320,
+    zIndex: 999, // Forces it to the front "layer"
+    backgroundColor: "#FF5A5F",
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    justifyContent: "center",
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 5,
   },
   filterWrapper: { position: "absolute", top: 60, left: 0, right: 0 },
   filterScroll: { paddingHorizontal: 15 },
