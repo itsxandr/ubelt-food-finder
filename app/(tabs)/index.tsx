@@ -1,4 +1,7 @@
-import { getUbeltSpots } from "@/src/services/dataService";
+import {
+  calculateMapCenter,
+  getUbeltSpots,
+} from "@/src/services/dataService";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import * as Location from "expo-location";
 import {
@@ -58,6 +61,7 @@ export default function MapScreen() {
       const data = await getUbeltSpots();
       setAllSpots(data);
       setFilteredSpots(data);
+      setWebCenter(calculateMapCenter(data));
       setLoading(false);
     })();
   }, []);
