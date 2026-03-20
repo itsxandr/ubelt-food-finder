@@ -45,7 +45,9 @@ export default function MapScreen() {
   const [filteredSpots, setFilteredSpots] = useState<any[]>([]);
   const [activeFilter, setActiveFilter] = useState("All");
   const [loading, setLoading] = useState(true);
-
+  const [webCenter, setWebCenter] = useState<[number, number]>([
+    14.6041, 120.9882,
+  ]);
   const snapPoints = useMemo(() => ["28%", "50%", "90%"], []);
 
   useEffect(() => {
@@ -75,37 +77,128 @@ export default function MapScreen() {
   );
 
   const goToMyLocation = async () => {
+    let { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== "granted") {
+      Alert.alert("Permission Denied", "Allow location to find food near you!");
+      return;
+    }
+
     let location = await Location.getCurrentPositionAsync({});
-    mapRef.current?.animateToRegion(
-      {
-        latitude: location.coords.latitude,
-        longitude: location.coords.longitude,
-        latitudeDelta: 0.005,
-        longitudeDelta: 0.005,
-      },
-      1000,
-    );
+    const { latitude, longitude } = location.coords;
+
+    if (Platform.OS === "web") {
+      setWebCenter([latitude, longitude]); // Updates the Pigeon Map
+    } else {
+      mapRef.current?.animateToRegion(
+        {
+          // Original smooth mobile glide
+          latitude,
+          longitude,
+          latitudeDelta: 0.005,
+          longitudeDelta: 0.005,
+        },
+        1000,
+      );
+    }
   };
 
-  if (loading)
+  if (loading) {
     return (
-      <View style={styles.loader}>
-        <ActivityIndicator size="large" color="#FF5A5F" />
+      <View style={styles.splashContainer}>
+        {/* Your logo would go here */}
+        <View style={styles.logoPlaceholder}>
+          <MapPin size={60} color="white" fill="#FF5A5F" />
+        </View>
+        <Text style={styles.splashTitle}>Campus Food Finder</Text>
+        <ActivityIndicator
+          size="small"
+          color="#FF5A5F"
+          style={{ marginTop: 20 }}
+        />
       </View>
     );
+  }
+
   if (Platform.OS === "web") {
     return (
-      <View style={{ flex: 1 }}>
-        {/* This calls the interactive Pigeon Map instead of the list */}
+      <View style={{ flex: 1, backgroundColor: "#FFF" }}>
+        {/* TOP: Floating Filter Bar (Identical to Mobile) */}
+        <View style={[styles.filterWrapper, { top: 20 }]}>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.filterScroll}
+          >
+            {FILTERS.map((filter) => (
+              <TouchableOpacity
+                key={filter.id}
+                onPress={() => handleFilter(filter.id)}
+                style={[
+                  styles.filterChip,
+                  activeFilter === filter.id && styles.activeChip,
+                ]}
+              >
+                {filter.icon}
+                <Text
+                  style={[
+                    styles.filterText,
+                    activeFilter === filter.id && styles.activeText,
+                  ]}
+                >
+                  {filter.id}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        </View>
+
+        {/* MIDDLE: The Interactive Map */}
         <MapComponent
           allSpots={allSpots}
           filteredSpots={filteredSpots}
           activeFilter={activeFilter}
+          center={webCenter}
         />
+        {/* Floating Web Locate Button */}
+        <TouchableOpacity
+          style={[styles.locateButton, { bottom: "35%" }]} // Adjusted for web panel height
+          onPress={goToMyLocation}
+        >
+          <Navigation size={24} color="white" />
+        </TouchableOpacity>
 
-        {/* Floating Download Prompt */}
-        <View style={styles.webBadge}>
-          <Text style={styles.webBadgeText}>U-Belt Food Finder</Text>
+        {/* BOTTOM: Feature Panel (Mimicking the Bottom Sheet) */}
+        <View style={styles.webPanel}>
+          <Text style={styles.sheetTitle}>Where are we eating, Dex?</Text>
+          <View style={styles.quickActions}>
+            <TouchableOpacity
+              style={styles.actionCard}
+              onPress={() => handleFilter("Gym Bro Approved")}
+            >
+              <Dumbbell size={28} color="#FF5A5F" />
+              <Text style={styles.actionLabel}>High Protein</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.actionCard}
+              onPress={() => handleFilter("Petsa de Peligro")}
+            >
+              <Wallet size={28} color="#FF5A5F" />
+              <Text style={styles.actionLabel}>Budget Gems</Text>
+            </TouchableOpacity>
+          </View>
+
+          <Text style={styles.sectionHeader}>Nearest to you</Text>
+          {allSpots.slice(0, 3).map((spot: any) => (
+            <View key={spot.id} style={styles.spotListItem}>
+              <View style={styles.spotIconBg}>
+                <MapPin size={20} color="#666" />
+              </View>
+              <View style={styles.spotInfo}>
+                <Text style={styles.spotName}>{spot.name}</Text>
+                <Text style={styles.spotAddress}>{spot.address}</Text>
+              </View>
+            </View>
+          ))}
         </View>
       </View>
     );
@@ -306,5 +399,29 @@ const styles = StyleSheet.create({
     fontWeight: "800",
     fontSize: 14,
     letterSpacing: 0.5,
+  },
+  splashContainer: {
+    flex: 1,
+    backgroundColor: "#FFF",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  splashTitle: {
+    fontSize: 28,
+    fontWeight: "900",
+    color: "#1A1A1A",
+    marginTop: 20,
+    letterSpacing: -1,
+  },
+  webPanel: {
+    padding: 20,
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
+    backgroundColor: "white",
+    marginTop: -25, // Overlaps the map slightly for a modern look
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    elevation: 10,
   },
 });
