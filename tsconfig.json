@@ -3,7 +3,8 @@
   "compilerOptions": {
     "strict": true,
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./*"], // Root-level imports (components/, hooks/, etc)
+      "@/src/*": ["src/*"] // src/ imports
     }
   },
   "include": ["**/*.ts", "**/*.tsx", ".expo/babel.config.ts"]
