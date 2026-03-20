@@ -95,28 +95,17 @@ export default function MapScreen() {
     );
   if (Platform.OS === "web") {
     return (
-      <View style={styles.webContainer}>
-        <Text style={styles.sheetTitle}>U-Belt Food Finder</Text>
-        <Text style={styles.sectionHeader}>Instant Web Preview</Text>
+      <View style={{ flex: 1 }}>
+        {/* This calls the interactive Pigeon Map instead of the list */}
+        <MapComponent
+          allSpots={allSpots}
+          filteredSpots={filteredSpots}
+          activeFilter={activeFilter}
+        />
 
-        <ScrollView style={{ width: "100%" }}>
-          {allSpots.map((spot: any) => (
-            <View key={spot.id} style={styles.spotListItem}>
-              <View style={styles.spotIconBg}>
-                <MapPin size={20} color="#666" />
-              </View>
-              <View style={styles.spotInfo}>
-                <Text style={styles.spotName}>{spot.name}</Text>
-                <Text style={styles.spotAddress}>{spot.address}</Text>
-              </View>
-            </View>
-          ))}
-        </ScrollView>
-
-        <View style={styles.webFooter}>
-          <Text style={styles.activeText}>
-            Download the app for the full interactive map!
-          </Text>
+        {/* Floating Download Prompt */}
+        <View style={styles.webBadge}>
+          <Text style={styles.webBadgeText}>U-Belt Food Finder</Text>
         </View>
       </View>
     );
@@ -298,5 +287,24 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     marginTop: 20,
     width: "100%",
+  },
+  webBadge: {
+    position: "absolute",
+    top: 20,
+    alignSelf: "center",
+    backgroundColor: "rgba(255, 90, 95, 0.9)", // Your signature Red
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 25,
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    elevation: 5,
+  },
+  webBadgeText: {
+    color: "white",
+    fontWeight: "800",
+    fontSize: 14,
+    letterSpacing: 0.5,
   },
 });

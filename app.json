@@ -24,6 +24,21 @@
     "web": {
       "output": "static",
       "favicon": "./assets/images/favicon.png"
+      {
+  "expo": {
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "config": {
+        "pwa": {
+          "display": "standalone",
+          "orientation": "portrait",
+          "themeColor": "#FF5A5F"
+        }
+      }
+    }
+  }
+}
     },
     "plugins": [
       "expo-router",
