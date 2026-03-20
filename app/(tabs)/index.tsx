@@ -152,20 +152,22 @@ export default function MapScreen() {
           </ScrollView>
         </View>
 
-        {/* MIDDLE: The Interactive Map */}
-        <MapComponent
-          allSpots={allSpots}
-          filteredSpots={filteredSpots}
-          activeFilter={activeFilter}
-          center={webCenter}
-        />
-        {/* Floating Web Locate Button */}
-        <TouchableOpacity
-          style={[styles.locateButton, { bottom: "35%" }]} // Adjusted for web panel height
-          onPress={goToMyLocation}
-        >
-          <Navigation size={24} color="white" />
-        </TouchableOpacity>
+        {/* MIDDLE: The Interactive Map with Locate Button */}
+        <View style={styles.mapContainer}>
+          <MapComponent
+            allSpots={allSpots}
+            filteredSpots={filteredSpots}
+            activeFilter={activeFilter}
+            center={webCenter}
+          />
+          {/* Floating Web Locate Button - anchored inside the map area */}
+          <TouchableOpacity
+            style={[styles.locateButton, styles.webLocateButton]}
+            onPress={goToMyLocation}
+          >
+            <Navigation size={24} color="white" />
+          </TouchableOpacity>
+        </View>
 
         {/* BOTTOM: Feature Panel (Mimicking the Bottom Sheet) */}
         <View style={styles.webPanel}>
@@ -298,6 +300,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#FF5A5F",
   },
+  mapContainer: {
+    position: "relative",
+  },
   locateButton: {
     position: "absolute",
     bottom: "31%", // Lifted higher to stay above the new 28% sheet height
@@ -306,6 +311,10 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 30,
     elevation: 5,
+  },
+  webLocateButton: {
+    bottom: 16,
+    zIndex: 10,
   },
   filterWrapper: { position: "absolute", top: 60, left: 0, right: 0 },
   filterScroll: { paddingHorizontal: 15 },
