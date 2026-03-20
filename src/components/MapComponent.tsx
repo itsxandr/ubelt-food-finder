@@ -1,31 +1,42 @@
 import { Map, Marker as WebMarker } from "pigeon-maps";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 export default function MapComponent({
   allSpots,
   filteredSpots,
   activeFilter,
-  center, // ADDED: This receives the coordinates from your Locate Me button
+  center,
 }: any) {
+  const [internalCenter, setInternalCenter] = useState(center);
   const [zoom, setZoom] = useState(15);
+  const isUserInteractingRef = useRef(false);
 
-  // Use filteredSpots so the top buttons work on the web too
   const displaySpots = activeFilter === "All" ? allSpots : filteredSpots;
 
-  // Professional "Voyager" map theme
   const voyagerTiles = (x: number, y: number, z: number) =>
     `https://basemaps.cartocdn.com/rastertiles/voyager/${z}/${x}/${y}${window.devicePixelRatio > 1 ? "@2x" : ""}.png`;
 
-  const handleBoundsChanged = ({ zoom: newZoom }: { zoom: number }) => {
+  // When user zooms/drags, update internal state
+  const handleBoundsChanged = ({ center: newCenter, zoom: newZoom }: any) => {
+    isUserInteractingRef.current = true;
+    setInternalCenter(newCenter);
     setZoom(newZoom);
   };
+
+  // When center prop changes (from Locate Me), reset to that location
+  React.useEffect(() => {
+    if (!isUserInteractingRef.current) {
+      setInternalCenter(center);
+    }
+    isUserInteractingRef.current = false;
+  }, [center]);
 
   return (
     <View style={styles.mapWrapper}>
       <Map
         height={400}
-        center={center}
+        center={internalCenter}
         zoom={zoom}
         onBoundsChanged={handleBoundsChanged}
         provider={voyagerTiles}
@@ -50,6 +61,6 @@ const styles = StyleSheet.create({
     width: "100%",
     borderBottomWidth: 1,
     borderBottomColor: "#EEE",
-    backgroundColor: "#F5F5F5", // Light grey background while map tiles load
+    backgroundColor: "#F5F5F5",
   },
 });
