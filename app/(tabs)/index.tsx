@@ -39,10 +39,10 @@ const FILTERS = [
 ];
 
 export default function MapScreen() {
-  const mapRef = useRef<MapView>(null);
+  const mapRef = useRef<any>(null);
   const bottomSheetRef = useRef<BottomSheet>(null);
-  const [allSpots, setAllSpots] = useState([]);
-  const [filteredSpots, setFilteredSpots] = useState([]);
+  const [allSpots, setAllSpots] = useState<any[]>([]);
+  const [filteredSpots, setFilteredSpots] = useState<any[]>([]);
   const [activeFilter, setActiveFilter] = useState("All");
   const [loading, setLoading] = useState(true);
 
