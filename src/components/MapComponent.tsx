@@ -1,5 +1,5 @@
 import { Map, Marker as WebMarker } from "pigeon-maps";
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 export default function MapComponent({
@@ -8,6 +8,8 @@ export default function MapComponent({
   activeFilter,
   center, // ADDED: This receives the coordinates from your Locate Me button
 }: any) {
+  const [zoom, setZoom] = useState(15);
+
   // Use filteredSpots so the top buttons work on the web too
   const displaySpots = activeFilter === "All" ? allSpots : filteredSpots;
 
@@ -15,12 +17,17 @@ export default function MapComponent({
   const voyagerTiles = (x: number, y: number, z: number) =>
     `https://basemaps.cartocdn.com/rastertiles/voyager/${z}/${x}/${y}${window.devicePixelRatio > 1 ? "@2x" : ""}.png`;
 
+  const handleBoundsChanged = ({ zoom: newZoom }: { zoom: number }) => {
+    setZoom(newZoom);
+  };
+
   return (
     <View style={styles.mapWrapper}>
       <Map
         height={400}
-        center={center} // CHANGED: This allows the map to "jump" to your location
-        defaultZoom={15}
+        center={center}
+        zoom={zoom}
+        onBoundsChanged={handleBoundsChanged}
         provider={voyagerTiles}
       >
         {displaySpots.map((spot: any) => (
