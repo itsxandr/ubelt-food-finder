@@ -72,8 +72,15 @@ export default function ResultScreen() {
       </Pressable>
 
       <Text style={styles.section}>Top pick</Text>
+
       {recs.featured ? (
         <>
+          <View style={styles.confRow}>
+            <Text style={styles.confBadge}>
+              {recs.featuredConfidence}% match
+            </Text>
+          </View>
+
           <SpotCard
             spot={recs.featured}
             label="Chosen for you"
@@ -134,6 +141,7 @@ export default function ResultScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#fff", padding: 20, paddingTop: 56 },
+
   headerRow: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -160,6 +168,18 @@ const styles = StyleSheet.create({
   pickSub: { color: "white", opacity: 0.9, marginTop: 3 },
 
   section: { fontSize: 16, fontWeight: "800", marginBottom: 8, marginTop: 8 },
+
+  confRow: { marginBottom: 8 },
+  confBadge: {
+    alignSelf: "flex-start",
+    backgroundColor: "#EAF8EE",
+    color: "#157347",
+    fontWeight: "800",
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    borderRadius: 999,
+    fontSize: 12,
+  },
 
   card: {
     borderWidth: 1,

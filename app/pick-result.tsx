@@ -5,7 +5,7 @@ import { router, useLocalSearchParams } from "expo-router";
 import { useMemo, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
-function toDetail(spot: Spot) {
+function goToDetail(spot: Spot) {
   router.push({
     pathname: "/detail",
     params: {
@@ -26,6 +26,7 @@ export default function PickResultScreen() {
 
   const selectedNeed = need || "Pick for me";
   const { allSpots, loading } = useHomeController();
+
   const recs = useMemo(
     () => buildRecommendations(allSpots, selectedNeed),
     [allSpots, selectedNeed],
@@ -39,7 +40,7 @@ export default function PickResultScreen() {
       seen.add(s.id);
       return true;
     });
-  }, [recs]);
+  }, [recs.featured, recs.alternatives]);
 
   const initialIndex = useMemo(() => {
     if (!pool.length) return 0;
@@ -48,6 +49,26 @@ export default function PickResultScreen() {
   }, [pool, featuredId]);
 
   const [index, setIndex] = useState(initialIndex);
+  const [history, setHistory] = useState<number[]>([initialIndex]);
+
+  const reroll = () => {
+    if (pool.length <= 1) return;
+
+    const candidates = pool
+      .map((_, i) => i)
+      .filter((i) => i !== index && !history.includes(i));
+
+    const next =
+      candidates.length > 0
+        ? candidates[Math.floor(Math.random() * candidates.length)]
+        : pool.map((_, i) => i).filter((i) => i !== index)[0];
+
+    setIndex(next);
+    setHistory((prev) => {
+      const merged = [...prev, next];
+      return merged.slice(-Math.min(5, pool.length));
+    });
+  };
 
   if (loading) {
     return (
@@ -75,11 +96,6 @@ export default function PickResultScreen() {
 
   const spot = pool[index];
 
-  const reroll = () => {
-    if (pool.length <= 1) return;
-    setIndex((prev) => (prev + 1) % pool.length);
-  };
-
   return (
     <View style={styles.container}>
       <View style={styles.topRow}>
@@ -91,7 +107,7 @@ export default function PickResultScreen() {
 
       <Text style={styles.title}>Your pick</Text>
 
-      <Pressable style={styles.card} onPress={() => toDetail(spot)}>
+      <Pressable style={styles.card} onPress={() => goToDetail(spot)}>
         <Text style={styles.label}>Chosen for you</Text>
         <Text style={styles.name}>{spot.name}</Text>
         <Text style={styles.meta}>{spot.address}</Text>

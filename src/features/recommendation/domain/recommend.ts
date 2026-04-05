@@ -5,10 +5,19 @@ export type RecommendationReason = {
   bullets: string[];
 };
 
+export type RankedSpot = {
+  spot: Spot;
+  score: number;
+  confidence: number; // 0..100
+  reasons: string[];
+};
+
 export type RecommendationResult = {
   featured: Spot | null;
   alternatives: Spot[];
   reason: RecommendationReason | null;
+  featuredConfidence: number;
+  ranked: RankedSpot[];
 };
 
 function normalize(text?: string) {
@@ -29,8 +38,8 @@ function combinedText(spot: Spot) {
 function baseScore(spot: Spot) {
   let score = 0;
   const reasons: string[] = [];
-
   const rating = Number((spot as any).rating_avg || 0);
+
   if (rating >= 4.6) {
     score += 3;
     reasons.push("Excellent student rating");
@@ -40,17 +49,9 @@ function baseScore(spot: Spot) {
   } else if (rating >= 4.0) {
     score += 1;
   }
-
   return { score, reasons };
 }
 
-/**
- * Strong need-specific mapping so each need can produce a different winner.
- * We use:
- * - hard positive boosters
- * - hard negative penalties
- * - price heuristics
- */
 function needScore(spot: Spot, need: string) {
   const n = normalize(need);
   const text = combinedText(spot);
@@ -91,7 +92,6 @@ function needScore(spot: Spot, need: string) {
     "ambience",
   ]);
 
-  // I'M BROKE
   if (n.includes("broke")) {
     if (isBudget) {
       score += 8;
@@ -101,13 +101,8 @@ function needScore(spot: Spot, need: string) {
       score += 3;
       reasons.push("Great value for students");
     }
-    if (includesAny(text, ["premium", "expensive", "fine dining"])) {
-      score -= 4;
-    }
-  }
-
-  // STUDY PLACE
-  else if (n.includes("study")) {
+    if (includesAny(text, ["premium", "expensive", "fine dining"])) score -= 4;
+  } else if (n.includes("study")) {
     if (isStudy) {
       score += 8;
       reasons.push("Has study-friendly signals (quiet/Wi-Fi/work vibe)");
@@ -116,13 +111,8 @@ function needScore(spot: Spot, need: string) {
       score += 3;
       reasons.push("Cafe-type place works for long stays");
     }
-    if (includesAny(text, ["loud", "bar", "party"])) {
-      score -= 4;
-    }
-  }
-
-  // SNACK
-  else if (n.includes("snack")) {
+    if (includesAny(text, ["loud", "bar", "party"])) score -= 4;
+  } else if (n.includes("snack")) {
     if (isSnacky) {
       score += 8;
       reasons.push("Strong snack/quick-bite match");
@@ -131,13 +121,8 @@ function needScore(spot: Spot, need: string) {
       score += 2;
       reasons.push("Good for light bites and drinks");
     }
-    if (includesAny(text, ["full meal", "buffet"])) {
-      score -= 3;
-    }
-  }
-
-  // DATE SPOT
-  else if (n.includes("date")) {
+    if (includesAny(text, ["full meal", "buffet"])) score -= 3;
+  } else if (n.includes("date")) {
     if (isDate) {
       score += 8;
       reasons.push("Good ambience for a date");
@@ -146,13 +131,8 @@ function needScore(spot: Spot, need: string) {
       score += 3;
       reasons.push("Comfortable and pleasant atmosphere");
     }
-    if (includesAny(text, ["crowded", "fast food", "noisy"])) {
-      score -= 3;
-    }
-  }
-
-  // PICK FOR ME / DEFAULT
-  else {
+    if (includesAny(text, ["crowded", "fast food", "noisy"])) score -= 3;
+  } else {
     if (includesAny(text, ["student", "popular", "favorite"])) {
       score += 4;
       reasons.push("Reliable student favorite");
@@ -164,27 +144,49 @@ function needScore(spot: Spot, need: string) {
 }
 
 function stableTieBreaker(spot: Spot, need: string) {
-  // deterministic tiny jitter based on need+id to avoid same winner ties across needs
   const seed = `${need}:${spot.id}`;
   let h = 0;
   for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) % 997;
-  return (h % 10) / 100; // 0.00 to 0.09
+  return (h % 10) / 100;
+}
+
+function toConfidence(score: number, min: number, max: number) {
+  if (max <= min) return 85;
+  const norm = (score - min) / (max - min);
+  return Math.round(70 + norm * 28); // 70..98
 }
 
 export function buildRecommendations(
   spots: Spot[],
   need: string,
 ): RecommendationResult {
-  if (!spots?.length) return { featured: null, alternatives: [], reason: null };
+  if (!spots?.length) {
+    return {
+      featured: null,
+      alternatives: [],
+      reason: null,
+      featuredConfidence: 0,
+      ranked: [],
+    };
+  }
 
-  const ranked = spots
-    .map((spot) => {
-      const b = baseScore(spot);
-      const n = needScore(spot, need);
-      const score = b.score + n.score + stableTieBreaker(spot, need);
-      const reasons = [...n.reasons, ...b.reasons];
-      return { spot, score, reasons };
-    })
+  const scored = spots.map((spot) => {
+    const b = baseScore(spot);
+    const n = needScore(spot, need);
+    const score = b.score + n.score + stableTieBreaker(spot, need);
+    const reasons = [...n.reasons, ...b.reasons];
+    return { spot, score, reasons };
+  });
+
+  const rawScores = scored.map((s) => s.score);
+  const min = Math.min(...rawScores);
+  const max = Math.max(...rawScores);
+
+  const ranked: RankedSpot[] = scored
+    .map((s) => ({
+      ...s,
+      confidence: toConfidence(s.score, min, max),
+    }))
     .sort((a, b) => b.score - a.score);
 
   const featuredPack = ranked[0];
@@ -195,16 +197,20 @@ export function buildRecommendations(
     .filter((s) => s.id !== featured?.id)
     .slice(0, 3);
 
-  const reason =
-    featured && featuredPack
-      ? {
-          title: "Why chosen for you",
-          bullets:
-            featuredPack.reasons.length > 0
-              ? featuredPack.reasons.slice(0, 3)
-              : ["Best overall match for your selected need"],
-        }
-      : null;
+  const reason = featuredPack
+    ? {
+        title: "Why chosen for you",
+        bullets: featuredPack.reasons.length
+          ? featuredPack.reasons.slice(0, 3)
+          : ["Best overall match for your selected need"],
+      }
+    : null;
 
-  return { featured, alternatives, reason };
+  return {
+    featured,
+    alternatives,
+    reason,
+    featuredConfidence: featuredPack?.confidence ?? 0,
+    ranked,
+  };
 }
