@@ -182,8 +182,8 @@ const styles = StyleSheet.create({
     borderColor: "#C9C9C9",
   },
   checkboxOn: {
-    backgroundColor: "#8B5CF6",
-    borderColor: "#8B5CF6",
+    backgroundColor: "#ff0000",
+    borderColor: "#000000",
   },
   checkText: {
     color: "#666",

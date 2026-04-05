@@ -1,9 +1,13 @@
+import { AppScreen } from "@/src/components/layout/AppScreen";
+import { AppButton } from "@/src/components/ui/AppButton";
+import { AppCard } from "@/src/components/ui/AppCard";
 import { useHomeController } from "@/src/features/home/hooks/useHomeController";
 import { buildRecommendations } from "@/src/features/recommendation/domain/recommend";
+import { colors, radius, space, type } from "@/src/theme/tokens";
 import type { Spot } from "@/src/types/spot";
 import { router, useLocalSearchParams } from "expo-router";
 import { useMemo } from "react";
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 function SpotMiniCard({
   spot,
@@ -15,12 +19,14 @@ function SpotMiniCard({
   onPress?: () => void;
 }) {
   return (
-    <Pressable style={styles.miniCard} onPress={onPress}>
-      {label ? <Text style={styles.miniLabel}>{label}</Text> : null}
-      <Text style={styles.miniName}>{spot.name}</Text>
-      <Text style={styles.miniMeta} numberOfLines={1}>
-        {spot.address}
-      </Text>
+    <Pressable onPress={onPress}>
+      <AppCard style={styles.miniCard}>
+        {label ? <Text style={styles.miniLabel}>{label}</Text> : null}
+        <Text style={styles.miniName}>{spot.name}</Text>
+        <Text style={styles.miniMeta} numberOfLines={1}>
+          {spot.address}
+        </Text>
+      </AppCard>
     </Pressable>
   );
 }
@@ -38,14 +44,14 @@ export default function ResultScreen() {
 
   if (loading) {
     return (
-      <View style={styles.centered}>
+      <AppScreen contentStyle={styles.centered}>
         <Text style={styles.loadingText}>Loading top picks...</Text>
-      </View>
+      </AppScreen>
     );
   }
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <AppScreen scroll>
       <Text style={styles.heroTitle}>Top Picks!</Text>
       <Text style={styles.subTitle}>Based on your vibe: {selectedNeed}</Text>
 
@@ -61,7 +67,6 @@ export default function ResultScreen() {
             </View>
 
             <Pressable
-              style={styles.heroCard}
               onPress={() =>
                 router.push({
                   pathname: "/detail",
@@ -75,33 +80,35 @@ export default function ResultScreen() {
                 })
               }
             >
-              <Text style={styles.heroCardLabel}>Chosen for you</Text>
-              <Text style={styles.heroCardName}>{recs.featured.name}</Text>
-              <Text style={styles.heroCardMeta}>{recs.featured.address}</Text>
-              <Text style={styles.heroCardMeta}>
-                {recs.featured.price_category || "₱80–₱120"} •{" "}
-                {recs.featured.vibe_tags?.slice(0, 2).join(" • ") ||
-                  "Student favorite"}
-              </Text>
+              <AppCard style={styles.heroCard}>
+                <Text style={styles.heroCardLabel}>Chosen for you</Text>
+                <Text style={styles.heroCardName}>{recs.featured.name}</Text>
+                <Text style={styles.heroCardMeta}>{recs.featured.address}</Text>
+                <Text style={styles.heroCardMeta}>
+                  {recs.featured.price_category || "₱80–₱120"} •{" "}
+                  {recs.featured.vibe_tags?.slice(0, 2).join(" • ") ||
+                    "Student favorite"}
+                </Text>
+              </AppCard>
             </Pressable>
 
             {recs.reason ? (
-              <View style={styles.whyBox}>
+              <AppCard style={styles.whyBox}>
                 <Text style={styles.whyTitle}>{recs.reason.title}</Text>
                 {recs.reason.bullets.slice(0, 2).map((b, i) => (
                   <Text key={`${b}-${i}`} style={styles.whyBullet}>
                     • {b}
                   </Text>
                 ))}
-              </View>
+              </AppCard>
             ) : null}
           </>
         ) : (
           <Text style={styles.emptyText}>No top pick available yet.</Text>
         )}
 
-        <Pressable
-          style={styles.pickBtn}
+        <AppButton
+          label="Pick For Me!"
           onPress={() =>
             router.push({
               pathname: "/pick-result",
@@ -111,10 +118,9 @@ export default function ResultScreen() {
               },
             })
           }
-        >
-          <Text style={styles.pickBtnText}>Pick For Me!</Text>
-          <Text style={styles.pickBtnSub}>Tap for a surprise pick</Text>
-        </Pressable>
+          fullWidth
+        />
+        <Text style={styles.pickBtnSub}>Tap for a surprise pick</Text>
 
         <Text style={styles.altTitle}>Alternatives</Text>
         <View style={styles.altList}>
@@ -143,132 +149,112 @@ export default function ResultScreen() {
       <Text style={styles.swipeHint}>↓ swipe down</Text>
 
       <View style={styles.bottomRow}>
-        <Pressable
-          style={styles.pillMuted}
+        <AppButton
+          label="Change Need"
+          variant="muted"
           onPress={() => router.push("/need")}
-        >
-          <Text style={styles.pillMutedText}>Change Need</Text>
-        </Pressable>
+        />
       </View>
-    </ScrollView>
+    </AppScreen>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 20,
-    paddingTop: 56,
-    paddingBottom: 24,
-    backgroundColor: "#F7F7F7",
-  },
   centered: {
-    flex: 1,
-    backgroundColor: "#F7F7F7",
     justifyContent: "center",
     alignItems: "center",
-    padding: 20,
   },
-  loadingText: { color: "#333", fontSize: 16 },
+  loadingText: { color: colors.text, fontSize: type.body },
 
   heroTitle: {
     textAlign: "center",
-    fontSize: 42,
+    fontSize: type.hero,
     fontWeight: "800",
-    color: "#111",
-    marginBottom: 6,
+    color: colors.text,
+    marginBottom: space.xs,
   },
   subTitle: {
     textAlign: "center",
-    color: "#666",
+    color: colors.mutedText,
     fontWeight: "600",
-    marginBottom: 14,
+    marginBottom: space.lg,
   },
 
   stage: {
     borderWidth: 1,
-    borderColor: "#D9D9D9",
-    borderRadius: 14,
-    backgroundColor: "#FFF",
-    padding: 14,
+    borderColor: colors.borderStrong,
+    borderRadius: radius.lg,
+    backgroundColor: colors.surface,
+    padding: space.md,
   },
 
   sectionTitle: {
-    fontSize: 16,
+    fontSize: type.body,
     fontWeight: "800",
-    color: "#111",
-    marginBottom: 8,
+    color: colors.text,
+    marginBottom: space.sm,
   },
 
-  confRow: { marginBottom: 8 },
+  confRow: { marginBottom: space.sm },
   confBadge: {
     alignSelf: "flex-start",
-    backgroundColor: "#EAF8EE",
-    color: "#157347",
+    backgroundColor: colors.successSoft,
+    color: colors.successText,
     fontWeight: "800",
     paddingHorizontal: 10,
     paddingVertical: 6,
-    borderRadius: 999,
-    fontSize: 12,
+    borderRadius: radius.pill,
+    fontSize: type.small,
   },
 
   heroCard: {
-    borderWidth: 1,
-    borderColor: "#EAEAEA",
-    borderRadius: 14,
-    backgroundColor: "#FFFFFF",
-    padding: 14,
-    marginBottom: 10,
+    marginBottom: space.sm,
   },
-  heroCardLabel: { color: "#111", fontWeight: "700", marginBottom: 4 },
+  heroCardLabel: { color: colors.text, fontWeight: "700", marginBottom: 4 },
   heroCardName: {
     fontSize: 21,
     fontWeight: "800",
-    color: "#111",
+    color: colors.text,
     marginBottom: 4,
   },
-  heroCardMeta: { color: "#555", marginBottom: 2 },
+  heroCardMeta: { color: colors.subtext, marginBottom: 2 },
 
   whyBox: {
-    borderWidth: 1,
-    borderColor: "#ECECEC",
-    backgroundColor: "#FAFAFA",
-    borderRadius: 12,
-    padding: 10,
-    marginBottom: 12,
+    backgroundColor: colors.soft,
+    marginBottom: space.md,
   },
-  whyTitle: { fontWeight: "800", marginBottom: 4, color: "#111" },
-  whyBullet: { color: "#444", marginBottom: 2, fontSize: 13 },
+  whyTitle: { fontWeight: "800", marginBottom: 4, color: colors.text },
+  whyBullet: { color: colors.mutedText, marginBottom: 2, fontSize: type.small },
 
-  pickBtn: {
-    backgroundColor: "#111",
-    borderRadius: 14,
-    paddingVertical: 13,
-    alignItems: "center",
+  pickBtnSub: {
+    color: colors.mutedText,
+    marginTop: 6,
     marginBottom: 12,
+    textAlign: "center",
+    fontWeight: "600",
   },
-  pickBtnText: { color: "#FFF", fontSize: 22, fontWeight: "800" },
-  pickBtnSub: { color: "#DDD", marginTop: 2, fontWeight: "600" },
 
-  altTitle: { fontSize: 15, fontWeight: "800", marginBottom: 8, color: "#111" },
+  altTitle: {
+    fontSize: type.body,
+    fontWeight: "800",
+    marginBottom: space.sm,
+    color: colors.text,
+  },
   altList: { gap: 8 },
 
   miniCard: {
-    borderWidth: 1,
-    borderColor: "#EAEAEA",
-    borderRadius: 12,
-    backgroundColor: "#FFF",
     padding: 10,
   },
   miniLabel: {
-    color: "#555",
-    fontSize: 12,
+    color: colors.subtext,
+    fontSize: type.small,
     marginBottom: 2,
     fontWeight: "700",
   },
-  miniName: { color: "#111", fontWeight: "800" },
-  miniMeta: { color: "#666", marginTop: 2, fontSize: 12 },
+  miniName: { color: colors.text, fontWeight: "800" },
+  miniMeta: { color: colors.mutedText, marginTop: 2, fontSize: type.small },
 
-  emptyText: { color: "#666", marginBottom: 12 },
+  emptyText: { color: colors.mutedText, marginBottom: 12 },
 
   swipeHint: {
     textAlign: "center",
@@ -282,12 +268,4 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
   },
-  pillMuted: {
-    backgroundColor: "#EFEFEF",
-    borderRadius: 999,
-    paddingVertical: 11,
-    paddingHorizontal: 18,
-    alignItems: "center",
-  },
-  pillMutedText: { color: "#111", fontWeight: "700" },
 });
