@@ -2,7 +2,7 @@ import { useHomeController } from "@/src/features/home/hooks/useHomeController";
 import { buildRecommendations } from "@/src/features/recommendation/domain/recommend";
 import type { Spot } from "@/src/types/spot";
 import { router, useLocalSearchParams } from "expo-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 function goToDetail(spot: Spot) {
@@ -17,6 +17,8 @@ function goToDetail(spot: Spot) {
     },
   });
 }
+
+const ROLL_MS = 1200;
 
 export default function PickResultScreen() {
   const { need, featuredId } = useLocalSearchParams<{
@@ -50,6 +52,14 @@ export default function PickResultScreen() {
 
   const [index, setIndex] = useState(initialIndex);
   const [history, setHistory] = useState<number[]>([initialIndex]);
+  const [rolling, setRolling] = useState(true);
+
+  useEffect(() => {
+    if (!pool.length) return;
+    setRolling(true);
+    const t = setTimeout(() => setRolling(false), ROLL_MS);
+    return () => clearTimeout(t);
+  }, [index, pool.length]);
 
   const reroll = () => {
     if (pool.length <= 1) return;
@@ -72,23 +82,23 @@ export default function PickResultScreen() {
 
   if (loading) {
     return (
-      <View style={styles.container}>
-        <Text>Loading pick...</Text>
+      <View style={styles.centered}>
+        <Text style={styles.loadingText}>Picking your best match...</Text>
       </View>
     );
   }
 
   if (!pool.length) {
     return (
-      <View style={styles.container}>
-        <Text style={styles.emptyTitle}>No spots available right now.</Text>
-        <Text style={styles.emptySub}>Try changing your need.</Text>
+      <View style={styles.centered}>
+        <Text style={styles.emptyTitle}>No spots available.</Text>
+        <Text style={styles.emptySub}>Try another need.</Text>
 
         <Pressable
-          style={styles.btnSecondary}
+          style={styles.pillMuted}
           onPress={() => router.replace("/need")}
         >
-          <Text style={styles.btnSecondaryText}>Back to Need</Text>
+          <Text style={styles.pillMutedText}>Go Back</Text>
         </Pressable>
       </View>
     );
@@ -98,84 +108,145 @@ export default function PickResultScreen() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.topRow}>
-        <Pressable onPress={() => router.back()} style={styles.backBtn}>
-          <Text style={styles.backText}>← Back</Text>
-        </Pressable>
-        <Text style={styles.context}>{selectedNeed}</Text>
+      <Text style={styles.heroTitle}>Pick For Me!</Text>
+      <Text style={styles.needText}>{selectedNeed}</Text>
+
+      <View style={styles.stage}>
+        {rolling ? (
+          <View style={styles.rollWrap}>
+            <Text style={styles.dice}>🎲</Text>
+            <Text style={styles.rolling}>Rolling...</Text>
+            <Text style={styles.hint}>Finding your best match</Text>
+          </View>
+        ) : (
+          <Pressable style={styles.card} onPress={() => goToDetail(spot)}>
+            <Text style={styles.cardTitle}>{spot.name}</Text>
+            <Text style={styles.cardMeta}>{spot.address}</Text>
+            <Text style={styles.cardMeta}>
+              {spot.price_category || "₱80–₱120"} •{" "}
+              {spot.vibe_tags?.slice(0, 2).join(" • ") || "Student favorite"}
+            </Text>
+          </Pressable>
+        )}
       </View>
 
-      <Text style={styles.title}>Your pick</Text>
+      <Text style={styles.swipeHint}>↓ swipe down</Text>
 
-      <Pressable style={styles.card} onPress={() => goToDetail(spot)}>
-        <Text style={styles.label}>Chosen for you</Text>
-        <Text style={styles.name}>{spot.name}</Text>
-        <Text style={styles.meta}>{spot.address}</Text>
-        <Text style={styles.meta}>
-          {spot.price_category || "₱80–₱120"} •{" "}
-          {spot.vibe_tags?.slice(0, 2).join(" • ") || "Student favorite"}
-        </Text>
-      </Pressable>
+      <View style={styles.bottomRow}>
+        <Pressable style={styles.pillPrimary} onPress={reroll}>
+          <Text style={styles.pillPrimaryText}>
+            {pool.length > 1 ? "Reroll" : "Only one option"}
+          </Text>
+        </Pressable>
 
-      <Pressable style={styles.btnPrimary} onPress={reroll}>
-        <Text style={styles.btnPrimaryText}>
-          {pool.length > 1 ? "Reroll pick" : "Only one match available"}
-        </Text>
-      </Pressable>
-
-      <Pressable
-        style={styles.btnSecondary}
-        onPress={() => router.replace("/need")}
-      >
-        <Text style={styles.btnSecondaryText}>Change need</Text>
-      </Pressable>
+        <Pressable style={styles.pillMuted} onPress={() => router.back()}>
+          <Text style={styles.pillMutedText}>Go Back</Text>
+        </Pressable>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#fff", padding: 20, paddingTop: 56 },
-
-  topRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+  container: {
+    flex: 1,
+    backgroundColor: "#F7F7F7",
+    paddingHorizontal: 20,
+    paddingTop: 56,
+    paddingBottom: 20,
   },
-  backBtn: { paddingVertical: 6, paddingRight: 8 },
-  backText: { fontWeight: "700", color: "#111" },
-  context: { color: "#666", fontWeight: "600" },
+  centered: {
+    flex: 1,
+    backgroundColor: "#F7F7F7",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+  },
 
-  title: { fontSize: 24, fontWeight: "800", marginTop: 8, marginBottom: 14 },
+  heroTitle: {
+    textAlign: "center",
+    fontSize: 44,
+    fontWeight: "800",
+    color: "#111",
+    marginBottom: 6,
+  },
+  needText: {
+    textAlign: "center",
+    color: "#666",
+    marginBottom: 16,
+    fontWeight: "600",
+  },
+
+  stage: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: "#D9D9D9",
+    borderRadius: 14,
+    backgroundColor: "#FFF",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 16,
+  },
+
+  rollWrap: { alignItems: "center" },
+  dice: { fontSize: 56, marginBottom: 8 },
+  rolling: { fontSize: 24, fontWeight: "800", marginBottom: 6 },
+  hint: { color: "#777" },
 
   card: {
+    width: "100%",
     borderWidth: 1,
-    borderColor: "#EEE",
-    borderRadius: 12,
+    borderColor: "#EAEAEA",
+    borderRadius: 14,
+    backgroundColor: "#FFFFFF",
     padding: 14,
-    marginBottom: 14,
-    backgroundColor: "white",
   },
-  label: { color: "#FF5A5F", fontWeight: "700", marginBottom: 4 },
-  name: { fontSize: 18, fontWeight: "800" },
-  meta: { color: "#555", marginTop: 2 },
+  cardTitle: {
+    fontSize: 22,
+    fontWeight: "800",
+    color: "#111",
+    marginBottom: 6,
+  },
+  cardMeta: { color: "#555", marginBottom: 2 },
 
-  btnPrimary: {
-    backgroundColor: "#FF5A5F",
-    borderRadius: 12,
+  swipeHint: {
+    textAlign: "center",
+    marginTop: 10,
+    marginBottom: 12,
+    color: "#6B6B6B",
+    fontWeight: "600",
+  },
+
+  bottomRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    gap: 10,
+  },
+
+  pillPrimary: {
+    flex: 1,
+    backgroundColor: "#111",
+    borderRadius: 999,
     paddingVertical: 12,
     alignItems: "center",
-    marginBottom: 10,
   },
-  btnPrimaryText: { color: "white", fontWeight: "800" },
+  pillPrimaryText: { color: "#FFF", fontWeight: "700" },
 
-  btnSecondary: {
+  pillMuted: {
+    flex: 1,
     backgroundColor: "#EFEFEF",
-    borderRadius: 12,
+    borderRadius: 999,
     paddingVertical: 12,
     alignItems: "center",
   },
-  btnSecondaryText: { color: "#111", fontWeight: "700" },
+  pillMutedText: { color: "#111", fontWeight: "700" },
 
-  emptyTitle: { fontSize: 20, fontWeight: "800", marginBottom: 8 },
-  emptySub: { color: "#555", marginBottom: 16 },
+  loadingText: { fontSize: 16, color: "#333" },
+  emptyTitle: {
+    fontSize: 24,
+    fontWeight: "800",
+    marginBottom: 8,
+    color: "#111",
+  },
+  emptySub: { color: "#666", marginBottom: 16 },
 });

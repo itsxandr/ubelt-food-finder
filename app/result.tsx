@@ -3,9 +3,9 @@ import { buildRecommendations } from "@/src/features/recommendation/domain/recom
 import type { Spot } from "@/src/types/spot";
 import { router, useLocalSearchParams } from "expo-router";
 import { useMemo } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 
-function SpotCard({
+function SpotMiniCard({
   spot,
   label,
   onPress,
@@ -15,13 +15,11 @@ function SpotCard({
   onPress?: () => void;
 }) {
   return (
-    <Pressable style={styles.card} onPress={onPress}>
-      {label ? <Text style={styles.label}>{label}</Text> : null}
-      <Text style={styles.name}>{spot.name}</Text>
-      <Text style={styles.meta}>{spot.address}</Text>
-      <Text style={styles.meta}>
-        {spot.price_category || "₱80–₱120"} •{" "}
-        {spot.vibe_tags?.slice(0, 2).join(" • ") || "Student favorite"}
+    <Pressable style={styles.miniCard} onPress={onPress}>
+      {label ? <Text style={styles.miniLabel}>{label}</Text> : null}
+      <Text style={styles.miniName}>{spot.name}</Text>
+      <Text style={styles.miniMeta} numberOfLines={1}>
+        {spot.address}
       </Text>
     </Pressable>
   );
@@ -40,134 +38,166 @@ export default function ResultScreen() {
 
   if (loading) {
     return (
-      <View style={styles.container}>
-        <Text>Loading recommendations...</Text>
+      <View style={styles.centered}>
+        <Text style={styles.loadingText}>Loading top picks...</Text>
       </View>
     );
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.headerRow}>
-        <Text style={styles.header}>{selectedNeed} near you</Text>
-        <Pressable
-          style={styles.changeBtn}
-          onPress={() => router.push("/need")}
-        >
-          <Text style={styles.changeText}>Change</Text>
-        </Pressable>
-      </View>
+    <ScrollView contentContainerStyle={styles.container}>
+      <Text style={styles.heroTitle}>Top Picks!</Text>
+      <Text style={styles.subTitle}>Based on your vibe: {selectedNeed}</Text>
 
-      <Pressable
-        style={styles.pickBtn}
-        onPress={() =>
-          router.push({
-            pathname: "/pick-result",
-            params: { need: selectedNeed, featuredId: recs.featured?.id || "" },
-          })
-        }
-      >
-        <Text style={styles.pickText}>Pick for me</Text>
-        <Text style={styles.pickSub}>We’ll choose the best one for you</Text>
-      </Pressable>
+      <View style={styles.stage}>
+        <Text style={styles.sectionTitle}>Top pick</Text>
 
-      <Text style={styles.section}>Top pick</Text>
-
-      {recs.featured ? (
-        <>
-          <View style={styles.confRow}>
-            <Text style={styles.confBadge}>
-              {recs.featuredConfidence}% match
-            </Text>
-          </View>
-
-          <SpotCard
-            spot={recs.featured}
-            label="Chosen for you"
-            onPress={() =>
-              router.push({
-                pathname: "/detail",
-                params: {
-                  id: recs.featured!.id,
-                  name: recs.featured!.name,
-                  address: recs.featured!.address,
-                  price: recs.featured!.price_category || "₱80–₱120",
-                  tags: (recs.featured!.vibe_tags || []).join(", "),
-                },
-              })
-            }
-          />
-
-          {recs.reason ? (
-            <View style={styles.whyBox}>
-              <Text style={styles.whyTitle}>{recs.reason.title}</Text>
-              {recs.reason.bullets.map((b, i) => (
-                <Text key={`${b}-${i}`} style={styles.whyBullet}>
-                  • {b}
-                </Text>
-              ))}
+        {recs.featured ? (
+          <>
+            <View style={styles.confRow}>
+              <Text style={styles.confBadge}>
+                {recs.featuredConfidence}% match
+              </Text>
             </View>
-          ) : null}
-        </>
-      ) : (
-        <Text>No featured recommendation yet.</Text>
-      )}
 
-      <Text style={styles.section}>Alternatives</Text>
-      {recs.alternatives.map((s, i) => (
-        <SpotCard
-          key={s.id}
-          spot={s}
-          label={
-            i === 0 ? "Student favorite" : i === 1 ? "Quick bite" : "Nearby"
-          }
+            <Pressable
+              style={styles.heroCard}
+              onPress={() =>
+                router.push({
+                  pathname: "/detail",
+                  params: {
+                    id: recs.featured!.id,
+                    name: recs.featured!.name,
+                    address: recs.featured!.address,
+                    price: recs.featured!.price_category || "₱80–₱120",
+                    tags: (recs.featured!.vibe_tags || []).join(", "),
+                  },
+                })
+              }
+            >
+              <Text style={styles.heroCardLabel}>Chosen for you</Text>
+              <Text style={styles.heroCardName}>{recs.featured.name}</Text>
+              <Text style={styles.heroCardMeta}>{recs.featured.address}</Text>
+              <Text style={styles.heroCardMeta}>
+                {recs.featured.price_category || "₱80–₱120"} •{" "}
+                {recs.featured.vibe_tags?.slice(0, 2).join(" • ") ||
+                  "Student favorite"}
+              </Text>
+            </Pressable>
+
+            {recs.reason ? (
+              <View style={styles.whyBox}>
+                <Text style={styles.whyTitle}>{recs.reason.title}</Text>
+                {recs.reason.bullets.slice(0, 2).map((b, i) => (
+                  <Text key={`${b}-${i}`} style={styles.whyBullet}>
+                    • {b}
+                  </Text>
+                ))}
+              </View>
+            ) : null}
+          </>
+        ) : (
+          <Text style={styles.emptyText}>No top pick available yet.</Text>
+        )}
+
+        <Pressable
+          style={styles.pickBtn}
           onPress={() =>
             router.push({
-              pathname: "/detail",
+              pathname: "/pick-result",
               params: {
-                id: s.id,
-                name: s.name,
-                address: s.address,
-                price: s.price_category || "₱80–₱120",
-                tags: (s.vibe_tags || []).join(", "),
+                need: selectedNeed,
+                featuredId: recs.featured?.id || "",
               },
             })
           }
-        />
-      ))}
-    </View>
+        >
+          <Text style={styles.pickBtnText}>Pick For Me!</Text>
+          <Text style={styles.pickBtnSub}>Tap for a surprise pick</Text>
+        </Pressable>
+
+        <Text style={styles.altTitle}>Alternatives</Text>
+        <View style={styles.altList}>
+          {recs.alternatives.map((s, i) => (
+            <SpotMiniCard
+              key={s.id}
+              spot={s}
+              label={i === 0 ? "Alt 1" : i === 1 ? "Alt 2" : "Alt 3"}
+              onPress={() =>
+                router.push({
+                  pathname: "/detail",
+                  params: {
+                    id: s.id,
+                    name: s.name,
+                    address: s.address,
+                    price: s.price_category || "₱80–₱120",
+                    tags: (s.vibe_tags || []).join(", "),
+                  },
+                })
+              }
+            />
+          ))}
+        </View>
+      </View>
+
+      <Text style={styles.swipeHint}>↓ swipe down</Text>
+
+      <View style={styles.bottomRow}>
+        <Pressable
+          style={styles.pillMuted}
+          onPress={() => router.push("/need")}
+        >
+          <Text style={styles.pillMutedText}>Change Need</Text>
+        </Pressable>
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#fff", padding: 20, paddingTop: 56 },
-
-  headerRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+  container: {
+    paddingHorizontal: 20,
+    paddingTop: 56,
+    paddingBottom: 24,
+    backgroundColor: "#F7F7F7",
+  },
+  centered: {
+    flex: 1,
+    backgroundColor: "#F7F7F7",
+    justifyContent: "center",
     alignItems: "center",
+    padding: 20,
+  },
+  loadingText: { color: "#333", fontSize: 16 },
+
+  heroTitle: {
+    textAlign: "center",
+    fontSize: 42,
+    fontWeight: "800",
+    color: "#111",
+    marginBottom: 6,
+  },
+  subTitle: {
+    textAlign: "center",
+    color: "#666",
+    fontWeight: "600",
     marginBottom: 14,
   },
-  header: { fontSize: 24, fontWeight: "800", maxWidth: "75%" },
 
-  changeBtn: {
-    backgroundColor: "#EFEFEF",
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderRadius: 10,
-  },
-  changeText: { fontWeight: "700" },
-
-  pickBtn: {
-    backgroundColor: "#FF5A5F",
+  stage: {
+    borderWidth: 1,
+    borderColor: "#D9D9D9",
     borderRadius: 14,
+    backgroundColor: "#FFF",
     padding: 14,
-    marginBottom: 18,
   },
-  pickText: { color: "white", fontWeight: "800", fontSize: 16 },
-  pickSub: { color: "white", opacity: 0.9, marginTop: 3 },
 
-  section: { fontSize: 16, fontWeight: "800", marginBottom: 8, marginTop: 8 },
+  sectionTitle: {
+    fontSize: 16,
+    fontWeight: "800",
+    color: "#111",
+    marginBottom: 8,
+  },
 
   confRow: { marginBottom: 8 },
   confBadge: {
@@ -181,26 +211,83 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
 
-  card: {
+  heroCard: {
     borderWidth: 1,
-    borderColor: "#EEE",
-    borderRadius: 12,
+    borderColor: "#EAEAEA",
+    borderRadius: 14,
+    backgroundColor: "#FFFFFF",
     padding: 14,
     marginBottom: 10,
-    backgroundColor: "white",
   },
-  label: { color: "#FF5A5F", fontWeight: "700", marginBottom: 4 },
-  name: { fontSize: 16, fontWeight: "800" },
-  meta: { color: "#555", marginTop: 2 },
+  heroCardLabel: { color: "#111", fontWeight: "700", marginBottom: 4 },
+  heroCardName: {
+    fontSize: 21,
+    fontWeight: "800",
+    color: "#111",
+    marginBottom: 4,
+  },
+  heroCardMeta: { color: "#555", marginBottom: 2 },
 
   whyBox: {
     borderWidth: 1,
-    borderColor: "#F2D9DA",
-    backgroundColor: "#FFF7F7",
+    borderColor: "#ECECEC",
+    backgroundColor: "#FAFAFA",
     borderRadius: 12,
-    padding: 12,
-    marginBottom: 14,
+    padding: 10,
+    marginBottom: 12,
   },
-  whyTitle: { fontWeight: "800", marginBottom: 6 },
-  whyBullet: { color: "#444", marginBottom: 3 },
+  whyTitle: { fontWeight: "800", marginBottom: 4, color: "#111" },
+  whyBullet: { color: "#444", marginBottom: 2, fontSize: 13 },
+
+  pickBtn: {
+    backgroundColor: "#111",
+    borderRadius: 14,
+    paddingVertical: 13,
+    alignItems: "center",
+    marginBottom: 12,
+  },
+  pickBtnText: { color: "#FFF", fontSize: 22, fontWeight: "800" },
+  pickBtnSub: { color: "#DDD", marginTop: 2, fontWeight: "600" },
+
+  altTitle: { fontSize: 15, fontWeight: "800", marginBottom: 8, color: "#111" },
+  altList: { gap: 8 },
+
+  miniCard: {
+    borderWidth: 1,
+    borderColor: "#EAEAEA",
+    borderRadius: 12,
+    backgroundColor: "#FFF",
+    padding: 10,
+  },
+  miniLabel: {
+    color: "#555",
+    fontSize: 12,
+    marginBottom: 2,
+    fontWeight: "700",
+  },
+  miniName: { color: "#111", fontWeight: "800" },
+  miniMeta: { color: "#666", marginTop: 2, fontSize: 12 },
+
+  emptyText: { color: "#666", marginBottom: 12 },
+
+  swipeHint: {
+    textAlign: "center",
+    marginTop: 10,
+    marginBottom: 12,
+    color: "#6B6B6B",
+    fontWeight: "600",
+  },
+
+  bottomRow: {
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  pillMuted: {
+    backgroundColor: "#EFEFEF",
+    borderRadius: 999,
+    paddingVertical: 11,
+    paddingHorizontal: 18,
+    alignItems: "center",
+  },
+  pillMutedText: { color: "#111", fontWeight: "700" },
 });
