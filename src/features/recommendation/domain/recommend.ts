@@ -1,69 +1,210 @@
 import type { Spot } from "@/src/types/spot";
 
-export type RecommendationBundle = {
-  featured: Spot | null;
-  alternatives: Spot[];
+export type RecommendationReason = {
+  title: string;
+  bullets: string[];
 };
 
-function hasTag(spot: Spot, tag: string) {
-  return (spot.vibe_tags || []).some(
-    (t) => t.toLowerCase() === tag.toLowerCase(),
-  );
+export type RecommendationResult = {
+  featured: Spot | null;
+  alternatives: Spot[];
+  reason: RecommendationReason | null;
+};
+
+function normalize(text?: string) {
+  return (text || "").toLowerCase().trim();
 }
 
-function scoreSpot(spot: Spot, need: string) {
-  const n = need.toLowerCase();
+function includesAny(haystack: string, keys: string[]) {
+  return keys.some((k) => haystack.includes(k));
+}
+
+function combinedText(spot: Spot) {
+  const tags = (spot.vibe_tags || []).join(" ");
+  return `${normalize(spot.name)} ${normalize(spot.address)} ${normalize(
+    spot.price_category,
+  )} ${normalize(tags)}`;
+}
+
+function baseScore(spot: Spot) {
   let score = 0;
+  const reasons: string[] = [];
 
-  // Basic fallback score
-  score += 1;
-
-  // Map needs to tags (adjust to your real dataset tags)
-  if (n.includes("broke") || n.includes("budget")) {
-    if (hasTag(spot, "Petsa de Peligro") || hasTag(spot, "Budget")) score += 5;
-    if (spot.price_category?.includes("₱")) score += 1;
+  const rating = Number((spot as any).rating_avg || 0);
+  if (rating >= 4.6) {
+    score += 3;
+    reasons.push("Excellent student rating");
+  } else if (rating >= 4.3) {
+    score += 2;
+    reasons.push("Strong community rating");
+  } else if (rating >= 4.0) {
+    score += 1;
   }
 
-  if (n.includes("study")) {
-    if (hasTag(spot, "WiFi") || hasTag(spot, "Study")) score += 5;
+  return { score, reasons };
+}
+
+/**
+ * Strong need-specific mapping so each need can produce a different winner.
+ * We use:
+ * - hard positive boosters
+ * - hard negative penalties
+ * - price heuristics
+ */
+function needScore(spot: Spot, need: string) {
+  const n = normalize(need);
+  const text = combinedText(spot);
+  let score = 0;
+  const reasons: string[] = [];
+
+  const isBudget = includesAny(text, [
+    "₱",
+    "80",
+    "90",
+    "100",
+    "budget",
+    "cheap",
+    "sulit",
+    "student",
+  ]);
+  const isCafe = includesAny(text, ["coffee", "cafe", "espresso"]);
+  const isSnacky = includesAny(text, [
+    "snack",
+    "bakery",
+    "bake",
+    "bread",
+    "quick",
+    "merienda",
+  ]);
+  const isStudy = includesAny(text, [
+    "study",
+    "quiet",
+    "wifi",
+    "work",
+    "student friendly",
+  ]);
+  const isDate = includesAny(text, [
+    "date",
+    "cozy",
+    "romantic",
+    "aesthetic",
+    "ambience",
+  ]);
+
+  // I'M BROKE
+  if (n.includes("broke")) {
+    if (isBudget) {
+      score += 8;
+      reasons.push("Fits a budget-friendly spend");
+    }
+    if (includesAny(text, ["student", "sulit", "value"])) {
+      score += 3;
+      reasons.push("Great value for students");
+    }
+    if (includesAny(text, ["premium", "expensive", "fine dining"])) {
+      score -= 4;
+    }
   }
 
-  if (n.includes("snack")) {
-    if (hasTag(spot, "Quick bite") || hasTag(spot, "Snack")) score += 5;
+  // STUDY PLACE
+  else if (n.includes("study")) {
+    if (isStudy) {
+      score += 8;
+      reasons.push("Has study-friendly signals (quiet/Wi-Fi/work vibe)");
+    }
+    if (isCafe) {
+      score += 3;
+      reasons.push("Cafe-type place works for long stays");
+    }
+    if (includesAny(text, ["loud", "bar", "party"])) {
+      score -= 4;
+    }
   }
 
-  if (n.includes("date")) {
-    if (hasTag(spot, "Date spot") || hasTag(spot, "Cozy")) score += 5;
+  // SNACK
+  else if (n.includes("snack")) {
+    if (isSnacky) {
+      score += 8;
+      reasons.push("Strong snack/quick-bite match");
+    }
+    if (isCafe) {
+      score += 2;
+      reasons.push("Good for light bites and drinks");
+    }
+    if (includesAny(text, ["full meal", "buffet"])) {
+      score -= 3;
+    }
   }
 
-  if (n.includes("protein")) {
-    if (hasTag(spot, "Gym Bro Approved") || hasTag(spot, "High protein"))
-      score += 5;
+  // DATE SPOT
+  else if (n.includes("date")) {
+    if (isDate) {
+      score += 8;
+      reasons.push("Good ambience for a date");
+    }
+    if (includesAny(text, ["cozy", "quiet", "aesthetic"])) {
+      score += 3;
+      reasons.push("Comfortable and pleasant atmosphere");
+    }
+    if (includesAny(text, ["crowded", "fast food", "noisy"])) {
+      score -= 3;
+    }
   }
 
-  return score;
+  // PICK FOR ME / DEFAULT
+  else {
+    if (includesAny(text, ["student", "popular", "favorite"])) {
+      score += 4;
+      reasons.push("Reliable student favorite");
+    }
+    if (isBudget) score += 1;
+  }
+
+  return { score, reasons };
+}
+
+function stableTieBreaker(spot: Spot, need: string) {
+  // deterministic tiny jitter based on need+id to avoid same winner ties across needs
+  const seed = `${need}:${spot.id}`;
+  let h = 0;
+  for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) % 997;
+  return (h % 10) / 100; // 0.00 to 0.09
 }
 
 export function buildRecommendations(
   spots: Spot[],
   need: string,
-): RecommendationBundle {
-  if (!spots.length) return { featured: null, alternatives: [] };
+): RecommendationResult {
+  if (!spots?.length) return { featured: null, alternatives: [], reason: null };
 
-  const ranked = [...spots]
-    .map((spot) => ({ spot, score: scoreSpot(spot, need) }))
-    .sort((a, b) => b.score - a.score)
-    .map((x) => x.spot);
+  const ranked = spots
+    .map((spot) => {
+      const b = baseScore(spot);
+      const n = needScore(spot, need);
+      const score = b.score + n.score + stableTieBreaker(spot, need);
+      const reasons = [...n.reasons, ...b.reasons];
+      return { spot, score, reasons };
+    })
+    .sort((a, b) => b.score - a.score);
 
-  const featured = ranked[0] ?? null;
-  const alternatives = ranked.slice(1, 4); // max 3 alternatives
+  const featuredPack = ranked[0];
+  const featured = featuredPack?.spot ?? null;
+  const alternatives = ranked
+    .slice(1)
+    .map((r) => r.spot)
+    .filter((s) => s.id !== featured?.id)
+    .slice(0, 3);
 
-  return { featured, alternatives };
-}
+  const reason =
+    featured && featuredPack
+      ? {
+          title: "Why chosen for you",
+          bullets:
+            featuredPack.reasons.length > 0
+              ? featuredPack.reasons.slice(0, 3)
+              : ["Best overall match for your selected need"],
+        }
+      : null;
 
-export function randomPick(spots: Spot[], excludeId?: string): Spot | null {
-  const pool = excludeId ? spots.filter((s) => s.id !== excludeId) : spots;
-  if (!pool.length) return null;
-  const idx = Math.floor(Math.random() * pool.length);
-  return pool[idx];
+  return { featured, alternatives, reason };
 }

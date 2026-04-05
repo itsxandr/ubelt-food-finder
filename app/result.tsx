@@ -1,9 +1,7 @@
 import { useHomeController } from "@/src/features/home/hooks/useHomeController";
 import { buildRecommendations } from "@/src/features/recommendation/domain/recommend";
-//import { markSessionSeen } from "@/src/services/sessionService";
 import type { Spot } from "@/src/types/spot";
 import { router, useLocalSearchParams } from "expo-router";
-// import { useEffect, useMemo } from "react";
 import { useMemo } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
@@ -30,12 +28,6 @@ function SpotCard({
 }
 
 export default function ResultScreen() {
-  // useEffect(() => {
-  //   (async () => {
-  //     await markSessionSeen();
-  //   })();
-  // }, []);
-
   const { need } = useLocalSearchParams<{ need?: string }>();
   const selectedNeed = need || "Pick for me";
 
@@ -81,22 +73,35 @@ export default function ResultScreen() {
 
       <Text style={styles.section}>Top pick</Text>
       {recs.featured ? (
-        <SpotCard
-          spot={recs.featured}
-          label="Chosen for you"
-          onPress={() =>
-            router.push({
-              pathname: "/detail",
-              params: {
-                id: recs.featured!.id,
-                name: recs.featured!.name,
-                address: recs.featured!.address,
-                price: recs.featured!.price_category || "₱80–₱120",
-                tags: (recs.featured!.vibe_tags || []).join(", "),
-              },
-            })
-          }
-        />
+        <>
+          <SpotCard
+            spot={recs.featured}
+            label="Chosen for you"
+            onPress={() =>
+              router.push({
+                pathname: "/detail",
+                params: {
+                  id: recs.featured!.id,
+                  name: recs.featured!.name,
+                  address: recs.featured!.address,
+                  price: recs.featured!.price_category || "₱80–₱120",
+                  tags: (recs.featured!.vibe_tags || []).join(", "),
+                },
+              })
+            }
+          />
+
+          {recs.reason ? (
+            <View style={styles.whyBox}>
+              <Text style={styles.whyTitle}>{recs.reason.title}</Text>
+              {recs.reason.bullets.map((b, i) => (
+                <Text key={`${b}-${i}`} style={styles.whyBullet}>
+                  • {b}
+                </Text>
+              ))}
+            </View>
+          ) : null}
+        </>
       ) : (
         <Text>No featured recommendation yet.</Text>
       )}
@@ -167,4 +172,15 @@ const styles = StyleSheet.create({
   label: { color: "#FF5A5F", fontWeight: "700", marginBottom: 4 },
   name: { fontSize: 16, fontWeight: "800" },
   meta: { color: "#555", marginTop: 2 },
+
+  whyBox: {
+    borderWidth: 1,
+    borderColor: "#F2D9DA",
+    backgroundColor: "#FFF7F7",
+    borderRadius: 12,
+    padding: 12,
+    marginBottom: 14,
+  },
+  whyTitle: { fontWeight: "800", marginBottom: 6 },
+  whyBullet: { color: "#444", marginBottom: 3 },
 });
