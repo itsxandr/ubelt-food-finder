@@ -2,8 +2,9 @@ import { AppScreen } from "@/src/components/layout/AppScreen";
 import { AppButton } from "@/src/components/ui/AppButton";
 import { AppCard } from "@/src/components/ui/AppCard";
 import { colors, radius, space, type } from "@/src/theme/tokens";
+import * as Linking from "expo-linking";
 import { router, useLocalSearchParams } from "expo-router";
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, Platform, StyleSheet, Text, View } from "react-native";
 
 function parseTags(raw?: string) {
   if (!raw) return [];
@@ -11,6 +12,34 @@ function parseTags(raw?: string) {
     .split(",")
     .map((t) => t.trim())
     .filter(Boolean);
+}
+
+function buildMapsUrl(query: string) {
+  const encoded = encodeURIComponent(query);
+
+  // On iOS you can prefer Apple Maps; on Android, use geo:
+  if (Platform.OS === "ios") {
+    // Apple Maps web URL (reliable in Expo Go + Safari)
+    return `https://maps.apple.com/?q=${encoded}`;
+  }
+
+  // Android: geo: is nice, but not always supported on web. Use Google Maps URL for reliability.
+  return `https://www.google.com/maps/search/?api=1&query=${encoded}`;
+}
+
+async function openInMaps(query: string) {
+  const url = buildMapsUrl(query);
+
+  const can = await Linking.canOpenURL(url);
+  if (!can) {
+    Alert.alert(
+      "Can't open Maps",
+      "No maps app or browser could open this link.",
+    );
+    return;
+  }
+
+  await Linking.openURL(url);
 }
 
 export default function DetailScreen() {
@@ -26,6 +55,11 @@ export default function DetailScreen() {
   const displayName = name || "Unknown spot";
   const displayAddress = address || "Address unavailable";
   const displayPrice = price || "₱80–₱120";
+
+  const mapsQuery =
+    displayAddress !== "Address unavailable"
+      ? `${displayName} ${displayAddress}`
+      : displayName;
 
   return (
     <AppScreen scroll>
@@ -73,7 +107,11 @@ export default function DetailScreen() {
           />
         </View>
         <View style={styles.action}>
-          <AppButton label="Open in Maps" onPress={() => {}} fullWidth />
+          <AppButton
+            label="Open in Maps"
+            onPress={() => openInMaps(mapsQuery)}
+            fullWidth
+          />
         </View>
       </View>
     </AppScreen>
@@ -101,8 +139,8 @@ const styles = StyleSheet.create({
     height: 170,
     borderRadius: radius.md,
     borderWidth: 1,
-    borderColor: "#E0E0E0",
-    backgroundColor: "#F1F1F1",
+    borderColor: colors.borderStrong,
+    backgroundColor: colors.soft,
     justifyContent: "center",
     alignItems: "center",
     marginBottom: space.md,
@@ -143,14 +181,14 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
   },
   tagText: {
-    color: "#333",
+    color: colors.text,
     fontWeight: "700",
     fontSize: type.small,
   },
 
   emptyTags: {
     color: colors.mutedText,
-    fontSize: 13,
+    fontSize: type.small,
   },
 
   ratingRow: {
