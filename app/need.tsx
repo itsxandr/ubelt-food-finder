@@ -1,10 +1,15 @@
 import { AppScreen } from "@/src/components/layout/AppScreen";
 import { AppButton } from "@/src/components/ui/AppButton";
+import {
+  loadSession,
+  markSessionSeen,
+  saveSession,
+} from "@/src/services/sessionService";
 import { accent, colors, type } from "@/src/theme/tokens";
 import { Feather } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   Platform,
   Pressable,
@@ -41,15 +46,14 @@ const MORE_NEEDS: readonly string[] = [
 type NeedKey = (typeof MORE_NEEDS)[number];
 
 const NEED_ICON: Record<NeedKey, keyof typeof Feather.glyphMap> = {
-  // Feather doesn't have a peso glyph, so we render "₱" as text for this one.
-  "Budget Meal": "minus" as const,
+  "Budget Meal": "minus" as const, // we render ₱ as text
   "Place to Study": "book-open",
   Snack: "coffee",
   "Date Spot": "heart",
   "TikTok Trending": "trending-up",
   Coffee: "coffee",
   Samgyup: "shopping-bag",
-  //Inuman: "wine",
+  Inuman: "droplet",
   Barbecue: "activity",
   Pastries: "pie-chart",
   "Pick for me": "shuffle",
@@ -85,9 +89,36 @@ export default function NeedScreen() {
     [showMore],
   );
 
+  useEffect(() => {
+    let mounted = true;
+
+    (async () => {
+      const session = await loadSession();
+      if (!mounted) return;
+
+      if (session.lastPreference) {
+        setSelectedNeed(session.lastPreference);
+      }
+      if (typeof session.dontShowEveryTime === "boolean") {
+        setDontShowAgain(session.dontShowEveryTime);
+      }
+    })();
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
   const confirm = async () => {
     try {
       await setDontShowNeed(dontShowAgain);
+
+      await saveSession({
+        lastPreference: selectedNeed,
+        dontShowEveryTime: dontShowAgain,
+      });
+
+      await markSessionSeen();
     } catch {
       // non-blocking
     }
@@ -102,7 +133,6 @@ export default function NeedScreen() {
     const color = selected ? accent[600] : colors.text;
 
     if (need === "Budget Meal") {
-      // Peso sign icon (text)
       return (
         <View style={styles.iconWrap}>
           <Text style={[styles.pesoIcon, { color, fontSize: size + 2 }]}>
