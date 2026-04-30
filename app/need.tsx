@@ -1,13 +1,32 @@
+import { AppScreen } from "@/src/components/layout/AppScreen";
+import { AppButton } from "@/src/components/ui/AppButton";
+import { AppCard } from "@/src/components/ui/AppCard";
+import { markSessionSeen, saveSession } from "@/src/services/sessionService";
+import { colors, radius, space, type } from "@/src/theme/tokens";
+import {
+  BookOpen,
+  Coffee,
+  DollarSign,
+  Heart,
+  Zap,
+} from "lucide-react-native";
+import type { ComponentType } from "react";
+import { useState } from "react";
 import { router } from "expo-router";
-import { useMemo, useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Switch, Text, View } from "react-native";
 
-const QUICK_NEEDS = [
-  "I’m broke",
-  "I need to study",
-  "I want a snack",
-  "Date spot",
-  "Pick for me",
+type NeedOption = {
+  label: string;
+  icon: ComponentType<{ size?: number; color?: string }>;
+  featured?: boolean;
+};
+
+const QUICK_NEEDS: NeedOption[] = [
+  { label: "I'm broke", icon: DollarSign },
+  { label: "Need to study", icon: BookOpen },
+  { label: "I want a snack", icon: Coffee },
+  { label: "Date spot", icon: Heart },
+  { label: "Pick for me", icon: Zap, featured: true },
 ];
 
 const MORE_NEEDS = [
@@ -24,21 +43,14 @@ const MORE_NEEDS = [
 
 export default function NeedScreen() {
   const [showMore, setShowMore] = useState(false);
-  const [dontShowAgain, setDontShowAgain] = useState(false);
+  const [dontShowEveryTime, setDontShowEveryTime] = useState(false);
 
-  const displayedNeeds = useMemo(
-    () => (showMore ? MORE_NEEDS : QUICK_NEEDS),
-    [showMore],
-  );
-
-  const pickNeed = (need: string) => {
-    if (typeof window !== "undefined") {
-      if (dontShowAgain) {
-        window.localStorage.setItem("foodtrip_dont_show_need", "1");
-      } else {
-        window.localStorage.removeItem("foodtrip_dont_show_need");
-      }
-    }
+  const pickNeed = async (need: string) => {
+    await saveSession({
+      lastPreference: need,
+      dontShowEveryTime,
+    });
+    await markSessionSeen();
 
     router.push({
       pathname: "/result",
@@ -47,27 +59,55 @@ export default function NeedScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <AppScreen scroll contentStyle={styles.content}>
       <Text style={styles.title}>What do you need right now?</Text>
 
-      {!showMore ? (
-        <View style={styles.quickGrid}>
-          {displayedNeeds.map((need) => {
-            const isPick = need.toLowerCase() === "pick for me";
-            return (
-              <Pressable
-                key={need}
-                style={[styles.quickTile, isPick && styles.quickTileWide]}
-                onPress={() => pickNeed(need)}
+      <View style={styles.quickGrid}>
+        {QUICK_NEEDS.map(({ label, icon: Icon, featured }) => {
+          const isFeatured = Boolean(featured);
+          return (
+            <Pressable
+              key={label}
+              style={[
+                styles.quickTileWrap,
+                isFeatured && styles.quickTileWide,
+              ]}
+              onPress={() => pickNeed(label)}
+            >
+              <AppCard
+                style={[
+                  styles.quickTile,
+                  isFeatured && styles.quickTileFeatured,
+                ]}
               >
-                <Text style={styles.quickTileText}>{need}</Text>
-              </Pressable>
-            );
-          })}
-        </View>
-      ) : (
+                <Icon
+                  size={22}
+                  color={isFeatured ? colors.primaryText : colors.text}
+                />
+                <Text
+                  style={[
+                    styles.quickTileText,
+                    isFeatured && styles.quickTileTextFeatured,
+                  ]}
+                >
+                  {label}
+                </Text>
+              </AppCard>
+            </Pressable>
+          );
+        })}
+      </View>
+
+      <AppButton
+        label={showMore ? "Show Less" : "More Options"}
+        variant="muted"
+        fullWidth
+        onPress={() => setShowMore((v) => !v)}
+      />
+
+      {showMore ? (
         <View style={styles.listWrap}>
-          {displayedNeeds.map((need) => (
+          {MORE_NEEDS.map((need) => (
             <Pressable
               key={need}
               style={styles.pill}
@@ -77,117 +117,90 @@ export default function NeedScreen() {
             </Pressable>
           ))}
         </View>
-      )}
+      ) : null}
 
-      <Pressable style={styles.moreBtn} onPress={() => setShowMore((v) => !v)}>
-        <Text style={styles.moreBtnText}>
-          {showMore ? "Show Less" : "More Options"}
-        </Text>
-      </Pressable>
-
-      <Pressable
-        style={styles.checkRow}
-        onPress={() => setDontShowAgain((v) => !v)}
-      >
-        <View style={[styles.checkbox, dontShowAgain && styles.checkboxOn]} />
-        <Text style={styles.checkText}>Don’t show me again</Text>
-      </Pressable>
-    </View>
+      <View style={styles.toggleRow}>
+        <Text style={styles.toggleText}>Don&apos;t show me again</Text>
+        <Switch value={dontShowEveryTime} onValueChange={setDontShowEveryTime} />
+      </View>
+    </AppScreen>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#F7F7F7",
-    paddingHorizontal: 20,
-    paddingTop: 56,
-    paddingBottom: 20,
+  content: {
+    gap: space.lg,
   },
-
   title: {
     textAlign: "center",
-    fontSize: 18,
-    fontWeight: "700",
-    color: "#111",
-    marginBottom: 16,
+    fontSize: type.h1,
+    fontWeight: "800",
+    color: colors.text,
   },
 
   quickGrid: {
     flexDirection: "row",
     flexWrap: "wrap",
-    gap: 10,
-    marginBottom: 12,
+    gap: space.sm,
   },
-  quickTile: {
+  quickTileWrap: {
     width: "48%",
     minHeight: 92,
-    borderRadius: 18,
-    backgroundColor: "#ECECEC",
-    justifyContent: "center",
-    alignItems: "center",
-    paddingHorizontal: 10,
   },
   quickTileWide: {
     width: "100%",
     minHeight: 64,
   },
+  quickTile: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    gap: space.xs,
+    backgroundColor: colors.mutedBtn,
+    borderColor: colors.border,
+    borderRadius: radius.lg,
+    paddingVertical: space.md,
+    paddingHorizontal: space.sm,
+  },
+  quickTileFeatured: {
+    backgroundColor: colors.primary,
+    borderColor: colors.primary,
+  },
   quickTileText: {
     textAlign: "center",
-    color: "#111",
+    color: colors.text,
     fontWeight: "700",
+  },
+  quickTileTextFeatured: {
+    color: colors.primaryText,
   },
 
   listWrap: {
-    gap: 10,
-    marginBottom: 12,
+    gap: space.sm,
   },
   pill: {
     width: "100%",
-    borderRadius: 999,
-    backgroundColor: "#E6E6E6",
-    paddingVertical: 11,
+    borderRadius: radius.pill,
+    backgroundColor: colors.mutedBtn,
+    borderWidth: 1,
+    borderColor: colors.border,
+    paddingVertical: space.sm,
     alignItems: "center",
   },
   pillText: {
-    color: "#111",
+    color: colors.mutedBtnText,
     fontWeight: "700",
   },
 
-  moreBtn: {
-    marginTop: 6,
-    backgroundColor: "#E2E2E2",
-    borderRadius: 999,
-    paddingVertical: 10,
-    alignItems: "center",
-  },
-  moreBtnText: {
-    fontWeight: "700",
-    color: "#333",
-  },
-
-  checkRow: {
-    marginTop: 16,
+  toggleRow: {
     flexDirection: "row",
     alignItems: "center",
-    alignSelf: "center",
-    gap: 8,
+    justifyContent: "center",
+    gap: space.sm,
   },
-  checkbox: {
-    width: 16,
-    height: 16,
-    borderRadius: 4,
-    backgroundColor: "#DDD",
-    borderWidth: 1,
-    borderColor: "#C9C9C9",
-  },
-  checkboxOn: {
-    backgroundColor: "#ff0000",
-    borderColor: "#000000",
-  },
-  checkText: {
-    color: "#666",
-    fontSize: 12,
+  toggleText: {
+    color: colors.mutedText,
+    fontSize: type.small,
     fontWeight: "600",
   },
 });
