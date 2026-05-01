@@ -18,6 +18,10 @@ function parseTags(raw?: string) {
     .filter(Boolean);
 }
 
+function pickDisplayValue(value?: string, fallback?: string, defaultValue?: string) {
+  return value || fallback || defaultValue || "";
+}
+
 export default function DetailScreen() {
   const { id, name, address, price, tags } = useLocalSearchParams<{
     id?: string;
@@ -31,10 +35,21 @@ export default function DetailScreen() {
   const tagList = selectedSpot?.vibe_tags?.length
     ? selectedSpot.vibe_tags
     : parseTags(tags);
-  const displayName = selectedSpot?.name || name || "Unknown spot";
-  const displayAddress = selectedSpot?.address || address || "Address unavailable";
-  const displayPrice =
-    selectedSpot?.price_category || price || "₱80–₱120";
+  const displayName = pickDisplayValue(
+    selectedSpot?.name,
+    name,
+    "Unknown spot",
+  );
+  const displayAddress = pickDisplayValue(
+    selectedSpot?.address,
+    address,
+    "Address unavailable",
+  );
+  const displayPrice = pickDisplayValue(
+    selectedSpot?.price_category,
+    price,
+    "₱80–₱120",
+  );
 
   return (
     <AppScreen scroll>

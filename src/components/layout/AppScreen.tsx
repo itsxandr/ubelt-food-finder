@@ -7,13 +7,15 @@ export function AppScreen({
   children,
   scroll = false,
   contentStyle,
+  topInset = space.lg,
 }: {
   children: ReactNode;
   scroll?: boolean;
   contentStyle?: ViewStyle | ViewStyle[];
+  topInset?: number;
 }) {
   const insets = useSafeAreaInsets();
-  const paddingTop = insets.top + space.lg;
+  const paddingTop = insets.top + topInset;
 
   if (scroll) {
     return (
