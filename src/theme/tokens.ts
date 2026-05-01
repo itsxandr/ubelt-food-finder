@@ -13,6 +13,10 @@ export const colors = {
   soft: "#FAFAFA",
   successSoft: "#EAF8EE",
   successText: "#157347",
+  accent: "#FF5A5F",
+  star: "#F4B400",
+  placeholder: "#F1F1F1",
+  placeholderBorder: "#E0E0E0",
 };
 
 export const radius = {
@@ -24,6 +28,8 @@ export const radius = {
 };
 
 export const space = {
+  xxs: 2,
+  micro: 4,
   xs: 6,
   sm: 8,
   md: 12,
@@ -35,7 +41,8 @@ export const space = {
 export const type = {
   hero: 40,
   h1: 24,
-  h2: 18,
+  h2: 20,
+  h3: 18,
   body: 14,
   small: 12,
 };

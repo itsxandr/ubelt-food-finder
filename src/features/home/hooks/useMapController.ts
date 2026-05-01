@@ -1,16 +1,14 @@
-import { getUbeltSpots } from "@/src/services/dataService";
+import { useSpotLoader } from "@/src/features/home/hooks/useSpotLoader";
 import type { Spot } from "@/src/types/spot";
 import * as Location from "expo-location";
 import { useCallback, useEffect, useState } from "react";
 import { Alert, Platform } from "react-native";
 
-export function useHomeController() {
-  const [allSpots, setAllSpots] = useState<Spot[]>([]);
+export function useMapController() {
+  const { allSpots, loading } = useSpotLoader();
   const [filteredSpots, setFilteredSpots] = useState<Spot[]>([]);
   const [activeFilter, setActiveFilter] = useState("All");
-  const [loading, setLoading] = useState(true);
 
-  // web map state
   const [webCenter, setWebCenter] = useState<[number, number]>([
     14.6041, 120.9882,
   ]);
@@ -18,27 +16,19 @@ export function useHomeController() {
 
   useEffect(() => {
     (async () => {
-      try {
-        const { status } = await Location.requestForegroundPermissionsAsync();
-        if (status !== "granted") {
-          Alert.alert("Permission Denied");
-        }
-
-        const data = (await getUbeltSpots()) as Spot[];
-        setAllSpots(data);
-        setFilteredSpots(data);
-
-        // optional: center map from first spot if available
-        if (data.length > 0 && Platform.OS === "web") {
-          setWebCenter([data[0].latitude, data[0].longitude]);
-        }
-      } catch (e) {
-        console.error("Init error:", e);
-      } finally {
-        setLoading(false);
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        Alert.alert("Permission Denied");
       }
     })();
   }, []);
+
+  useEffect(() => {
+    setFilteredSpots(allSpots);
+    if (allSpots.length > 0 && Platform.OS === "web") {
+      setWebCenter([allSpots[0].latitude, allSpots[0].longitude]);
+    }
+  }, [allSpots]);
 
   const handleFilter = useCallback(
     (filterId: string) => {

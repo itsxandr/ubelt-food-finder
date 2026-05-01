@@ -1,10 +1,15 @@
 import { AppScreen } from "@/src/components/layout/AppScreen";
 import { AppButton } from "@/src/components/ui/AppButton";
 import { AppCard } from "@/src/components/ui/AppCard";
-import { useHomeController } from "@/src/features/home/hooks/useHomeController";
+import { AppPageTitle } from "@/src/components/ui/AppPageTitle";
+import { AppStage } from "@/src/components/ui/AppStage";
+import { AppSwipeHint } from "@/src/components/ui/AppSwipeHint";
+import { useSpotLoader } from "@/src/features/home/hooks/useSpotLoader";
 import { buildRecommendations } from "@/src/features/recommendation/domain/recommend";
+import { setSelectedSpot } from "@/src/services/spotSelection";
 import { colors, radius, space, type } from "@/src/theme/tokens";
 import type { Spot } from "@/src/types/spot";
+import { spotToDetailParams } from "@/src/utils/spotNavigation";
 import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
@@ -12,15 +17,10 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 const ROLL_MS = 1200;
 
 function goToDetail(spot: Spot) {
+  setSelectedSpot(spot);
   router.push({
     pathname: "/detail",
-    params: {
-      id: spot.id,
-      name: spot.name,
-      address: spot.address,
-      price: spot.price_category || "₱80–₱120",
-      tags: (spot.vibe_tags || []).join(", "),
-    },
+    params: spotToDetailParams(spot),
   });
 }
 
@@ -31,7 +31,7 @@ export default function PickResultScreen() {
   }>();
 
   const selectedNeed = need || "Pick for me";
-  const { allSpots, loading } = useHomeController();
+  const { allSpots, loading } = useSpotLoader();
 
   const recs = useMemo(
     () => buildRecommendations(allSpots, selectedNeed),
@@ -113,10 +113,10 @@ export default function PickResultScreen() {
 
   return (
     <AppScreen>
-      <Text style={styles.heroTitle}>Pick For Me!</Text>
+      <AppPageTitle style={styles.heroTitle}>Pick For Me!</AppPageTitle>
       <Text style={styles.needText}>{selectedNeed}</Text>
 
-      <View style={styles.stage}>
+      <AppStage style={styles.stage}>
         {rolling ? (
           <View style={styles.rollWrap}>
             <Text style={styles.dice}>🎲</Text>
@@ -135,9 +135,9 @@ export default function PickResultScreen() {
             </AppCard>
           </Pressable>
         )}
-      </View>
+      </AppStage>
 
-      <Text style={styles.swipeHint}>↓ swipe down</Text>
+      <AppSwipeHint>↓ swipe down</AppSwipeHint>
 
       <View style={styles.bottomRow}>
         <View style={styles.action}>
@@ -169,10 +169,6 @@ const styles = StyleSheet.create({
   },
 
   heroTitle: {
-    textAlign: "center",
-    fontSize: type.hero,
-    fontWeight: "800",
-    color: colors.text,
     marginBottom: space.xs,
   },
   needText: {
@@ -184,12 +180,7 @@ const styles = StyleSheet.create({
 
   stage: {
     flex: 1,
-    borderWidth: 1,
-    borderColor: colors.borderStrong,
-    borderRadius: radius.lg,
-    backgroundColor: colors.surface,
     justifyContent: "center",
-    padding: space.md,
   },
 
   rollWrap: { alignItems: "center" },
@@ -207,20 +198,12 @@ const styles = StyleSheet.create({
     borderRadius: radius.lg,
   },
   cardTitle: {
-    fontSize: 22,
+    fontSize: type.h2,
     fontWeight: "800",
     color: colors.text,
-    marginBottom: 6,
+    marginBottom: space.xs,
   },
-  cardMeta: { color: colors.subtext, marginBottom: 2 },
-
-  swipeHint: {
-    textAlign: "center",
-    marginTop: space.sm,
-    marginBottom: space.md,
-    color: colors.mutedText,
-    fontWeight: "600",
-  },
+  cardMeta: { color: colors.subtext, marginBottom: space.xxs },
 
   bottomRow: {
     flexDirection: "row",

@@ -6,6 +6,6 @@ export type Spot = {
   longitude: number;
   vibe_tags: string[];
   price_category?: string;
-  rating?: number;
+  rating_avg?: number;
   distance?: string;
 };

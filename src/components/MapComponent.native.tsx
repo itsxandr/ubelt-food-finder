@@ -2,6 +2,7 @@ import { MapPin } from "lucide-react-native";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
+import { colors, radius, space } from "@/src/theme/tokens";
 
 export default function MapComponent({
   mapRef,
@@ -26,15 +27,15 @@ export default function MapComponent({
           key={spot.id}
           coordinate={{ latitude: spot.latitude, longitude: spot.longitude }}
         >
-          <View style={styles.pinContainer}>
-            <MapPin
-              size={24}
-              color="#FF5A5F"
-              fill={activeFilter === "All" ? "white" : "#FF5A5F"}
-            />
-          </View>
-        </Marker>
-      ))}
+            <View style={styles.pinContainer}>
+              <MapPin
+                size={24}
+                color={colors.accent}
+                fill={activeFilter === "All" ? colors.surface : colors.accent}
+              />
+            </View>
+          </Marker>
+        ))}
     </MapView>
   );
 }
@@ -42,10 +43,10 @@ export default function MapComponent({
 const styles = StyleSheet.create({
   map: { width: "100%", height: "100%" },
   pinContainer: {
-    padding: 4,
-    backgroundColor: "white",
-    borderRadius: 15,
+    padding: space.micro,
+    backgroundColor: colors.surface,
+    borderRadius: radius.lg,
     borderWidth: 1,
-    borderColor: "#FF5A5F",
+    borderColor: colors.accent,
   },
 });

@@ -1,6 +1,7 @@
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import React, { useEffect, useRef } from "react";
+import { colors, space } from "@/src/theme/tokens";
 import { StyleSheet, View } from "react-native";
 
 export default function MapComponent({
@@ -18,6 +19,12 @@ export default function MapComponent({
   // Modern "Voyager" style tiles (Free)
   const styleUrl =
     "https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json";
+  const popupNameColor = colors.text;
+  const popupMetaColor = colors.mutedText;
+  const popupTagColor = colors.accent;
+  const popupPadding = space.sm;
+  const pinSvg = `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="12" r="8" fill="${colors.accent}" stroke="${colors.surface}" stroke-width="2"/></svg>`;
+  const pinUrl = `url("data:image/svg+xml;utf8,${encodeURIComponent(pinSvg)}")`;
 
   useEffect(() => {
     if (!mapContainer.current) return;
@@ -49,10 +56,14 @@ export default function MapComponent({
           closeButton: false,
         }).setHTML(
           `
-          <div style="padding: 10px; font-family: sans-serif;">
-            <strong style="display: block; font-size: 14px; color: #1A1A1A;">${spot.name}</strong>
-            <span style="font-size: 12px; color: #666;">${spot.address}</span>
-            ${spot.vibe_tags.length > 0 ? `<div style="margin-top: 5px; color: #FF5A5F; font-size: 10px; font-weight: bold;">${spot.vibe_tags[0]}</div>` : ""}
+          <div style="padding: ${popupPadding}px; font-family: sans-serif;">
+            <strong style="display: block; font-size: 14px; color: ${popupNameColor};">${spot.name}</strong>
+            <span style="font-size: 12px; color: ${popupMetaColor};">${spot.address}</span>
+            ${
+              spot.vibe_tags.length > 0
+                ? `<div style="margin-top: 5px; color: ${popupTagColor}; font-size: 10px; font-weight: bold;">${spot.vibe_tags[0]}</div>`
+                : ""
+            }
           </div>
           `,
         );
@@ -62,8 +73,7 @@ export default function MapComponent({
         el.className = "custom-marker";
         el.style.width = "32px";
         el.style.height = "32px";
-        el.style.backgroundImage =
-          "url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxMiIgcj0iOCIgZmlsbD0iI0ZGNUE1RiIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjwvc3ZnPg==)";
+        el.style.backgroundImage = pinUrl;
         el.style.backgroundSize = "contain";
         el.style.cursor = "pointer";
 
@@ -91,7 +101,7 @@ const styles = StyleSheet.create({
     height: 400,
     width: "100%",
     borderBottomWidth: 1,
-    borderBottomColor: "#EEE",
-    backgroundColor: "#F5F5F5",
+    borderBottomColor: colors.border,
+    backgroundColor: colors.bg,
   },
 });

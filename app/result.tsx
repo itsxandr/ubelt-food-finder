@@ -1,10 +1,15 @@
 import { AppScreen } from "@/src/components/layout/AppScreen";
 import { AppButton } from "@/src/components/ui/AppButton";
 import { AppCard } from "@/src/components/ui/AppCard";
-import { useHomeController } from "@/src/features/home/hooks/useHomeController";
+import { AppPageTitle } from "@/src/components/ui/AppPageTitle";
+import { AppStage } from "@/src/components/ui/AppStage";
+import { AppSwipeHint } from "@/src/components/ui/AppSwipeHint";
+import { useSpotLoader } from "@/src/features/home/hooks/useSpotLoader";
 import { buildRecommendations } from "@/src/features/recommendation/domain/recommend";
+import { setSelectedSpot } from "@/src/services/spotSelection";
 import { colors, radius, space, type } from "@/src/theme/tokens";
 import type { Spot } from "@/src/types/spot";
+import { spotToDetailParams } from "@/src/utils/spotNavigation";
 import { router, useLocalSearchParams } from "expo-router";
 import { useMemo } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
@@ -35,7 +40,7 @@ export default function ResultScreen() {
   const { need } = useLocalSearchParams<{ need?: string }>();
   const selectedNeed = need || "Pick for me";
 
-  const { allSpots, loading } = useHomeController();
+  const { allSpots, loading } = useSpotLoader();
 
   const recs = useMemo(
     () => buildRecommendations(allSpots, selectedNeed),
@@ -52,10 +57,10 @@ export default function ResultScreen() {
 
   return (
     <AppScreen scroll>
-      <Text style={styles.heroTitle}>Top Picks!</Text>
+      <AppPageTitle style={styles.heroTitle}>Top Picks!</AppPageTitle>
       <Text style={styles.subTitle}>Based on your vibe: {selectedNeed}</Text>
 
-      <View style={styles.stage}>
+      <AppStage>
         <Text style={styles.sectionTitle}>Top pick</Text>
 
         {recs.featured ? (
@@ -67,18 +72,13 @@ export default function ResultScreen() {
             </View>
 
             <Pressable
-              onPress={() =>
+              onPress={() => {
+                setSelectedSpot(recs.featured!);
                 router.push({
                   pathname: "/detail",
-                  params: {
-                    id: recs.featured!.id,
-                    name: recs.featured!.name,
-                    address: recs.featured!.address,
-                    price: recs.featured!.price_category || "₱80–₱120",
-                    tags: (recs.featured!.vibe_tags || []).join(", "),
-                  },
-                })
-              }
+                  params: spotToDetailParams(recs.featured!),
+                });
+              }}
             >
               <AppCard style={styles.heroCard}>
                 <Text style={styles.heroCardLabel}>Chosen for you</Text>
@@ -129,24 +129,19 @@ export default function ResultScreen() {
               key={s.id}
               spot={s}
               label={i === 0 ? "Alt 1" : i === 1 ? "Alt 2" : "Alt 3"}
-              onPress={() =>
+              onPress={() => {
+                setSelectedSpot(s);
                 router.push({
                   pathname: "/detail",
-                  params: {
-                    id: s.id,
-                    name: s.name,
-                    address: s.address,
-                    price: s.price_category || "₱80–₱120",
-                    tags: (s.vibe_tags || []).join(", "),
-                  },
-                })
-              }
+                  params: spotToDetailParams(s),
+                });
+              }}
             />
           ))}
         </View>
-      </View>
+      </AppStage>
 
-      <Text style={styles.swipeHint}>↓ swipe down</Text>
+      <AppSwipeHint>↓ swipe down</AppSwipeHint>
 
       <View style={styles.bottomRow}>
         <AppButton
@@ -167,10 +162,6 @@ const styles = StyleSheet.create({
   loadingText: { color: colors.text, fontSize: type.body },
 
   heroTitle: {
-    textAlign: "center",
-    fontSize: type.hero,
-    fontWeight: "800",
-    color: colors.text,
     marginBottom: space.xs,
   },
   subTitle: {
@@ -178,14 +169,6 @@ const styles = StyleSheet.create({
     color: colors.mutedText,
     fontWeight: "600",
     marginBottom: space.lg,
-  },
-
-  stage: {
-    borderWidth: 1,
-    borderColor: colors.borderStrong,
-    borderRadius: radius.lg,
-    backgroundColor: colors.surface,
-    padding: space.md,
   },
 
   sectionTitle: {
@@ -201,8 +184,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.successSoft,
     color: colors.successText,
     fontWeight: "800",
-    paddingHorizontal: 10,
-    paddingVertical: 6,
+    paddingHorizontal: space.sm,
+    paddingVertical: space.xs,
     borderRadius: radius.pill,
     fontSize: type.small,
   },
@@ -210,26 +193,38 @@ const styles = StyleSheet.create({
   heroCard: {
     marginBottom: space.sm,
   },
-  heroCardLabel: { color: colors.text, fontWeight: "700", marginBottom: 4 },
+  heroCardLabel: {
+    color: colors.text,
+    fontWeight: "700",
+    marginBottom: space.micro,
+  },
   heroCardName: {
-    fontSize: 21,
+    fontSize: type.h2,
     fontWeight: "800",
     color: colors.text,
-    marginBottom: 4,
+    marginBottom: space.micro,
   },
-  heroCardMeta: { color: colors.subtext, marginBottom: 2 },
+  heroCardMeta: { color: colors.subtext, marginBottom: space.xxs },
 
   whyBox: {
     backgroundColor: colors.soft,
     marginBottom: space.md,
   },
-  whyTitle: { fontWeight: "800", marginBottom: 4, color: colors.text },
-  whyBullet: { color: colors.mutedText, marginBottom: 2, fontSize: type.small },
+  whyTitle: {
+    fontWeight: "800",
+    marginBottom: space.micro,
+    color: colors.text,
+  },
+  whyBullet: {
+    color: colors.mutedText,
+    marginBottom: space.xxs,
+    fontSize: type.small,
+  },
 
   pickBtnSub: {
     color: colors.mutedText,
-    marginTop: 6,
-    marginBottom: 12,
+    marginTop: space.xs,
+    marginBottom: space.md,
     textAlign: "center",
     fontWeight: "600",
   },
@@ -240,29 +235,25 @@ const styles = StyleSheet.create({
     marginBottom: space.sm,
     color: colors.text,
   },
-  altList: { gap: 8 },
+  altList: { gap: space.sm },
 
   miniCard: {
-    padding: 10,
+    padding: space.md,
   },
   miniLabel: {
     color: colors.subtext,
     fontSize: type.small,
-    marginBottom: 2,
+    marginBottom: space.xxs,
     fontWeight: "700",
   },
   miniName: { color: colors.text, fontWeight: "800" },
-  miniMeta: { color: colors.mutedText, marginTop: 2, fontSize: type.small },
-
-  emptyText: { color: colors.mutedText, marginBottom: 12 },
-
-  swipeHint: {
-    textAlign: "center",
-    marginTop: 10,
-    marginBottom: 12,
-    color: "#6B6B6B",
-    fontWeight: "600",
+  miniMeta: {
+    color: colors.mutedText,
+    marginTop: space.xxs,
+    fontSize: type.small,
   },
+
+  emptyText: { color: colors.mutedText, marginBottom: space.md },
 
   bottomRow: {
     flexDirection: "row",

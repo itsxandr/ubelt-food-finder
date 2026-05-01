@@ -113,11 +113,3 @@ export async function shouldShowNeedScreen(): Promise<{
     lastPreference: session.lastPreference,
   };
 }
-
-export async function markSessionSeen() {
-  await saveSession({
-    lastSeenAt: Date.now(),
-    lastTimeBucket: getTimeBucket(),
-    lastLocation: await getCurrentLocationSafe(),
-  });
-}

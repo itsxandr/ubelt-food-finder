@@ -1,7 +1,12 @@
 import { AppScreen } from "@/src/components/layout/AppScreen";
 import { AppButton } from "@/src/components/ui/AppButton";
 import { AppCard } from "@/src/components/ui/AppCard";
-import { markSessionSeen, saveSession } from "@/src/services/sessionService";
+import { AppChip } from "@/src/components/ui/AppChip";
+import {
+  getCurrentLocationSafe,
+  getTimeBucket,
+  saveSession,
+} from "@/src/services/sessionService";
 import { colors, radius, space, type } from "@/src/theme/tokens";
 import {
   BookOpen,
@@ -46,11 +51,15 @@ export default function NeedScreen() {
   const [dontShowEveryTime, setDontShowEveryTime] = useState(false);
 
   const pickNeed = async (need: string) => {
+    const lastLocation = await getCurrentLocationSafe();
+
     await saveSession({
       lastPreference: need,
       dontShowEveryTime,
+      lastSeenAt: Date.now(),
+      lastTimeBucket: getTimeBucket(),
+      lastLocation,
     });
-    await markSessionSeen();
 
     router.push({
       pathname: "/result",
@@ -110,10 +119,9 @@ export default function NeedScreen() {
           {MORE_NEEDS.map((need) => (
             <Pressable
               key={need}
-              style={styles.pill}
               onPress={() => pickNeed(need)}
             >
-              <Text style={styles.pillText}>{need}</Text>
+              <AppChip label={need} size="lg" fullWidth />
             </Pressable>
           ))}
         </View>
@@ -178,20 +186,6 @@ const styles = StyleSheet.create({
   listWrap: {
     gap: space.sm,
   },
-  pill: {
-    width: "100%",
-    borderRadius: radius.pill,
-    backgroundColor: colors.mutedBtn,
-    borderWidth: 1,
-    borderColor: colors.border,
-    paddingVertical: space.sm,
-    alignItems: "center",
-  },
-  pillText: {
-    color: colors.mutedBtnText,
-    fontWeight: "700",
-  },
-
   toggleRow: {
     flexDirection: "row",
     alignItems: "center",

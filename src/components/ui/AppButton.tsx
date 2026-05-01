@@ -1,4 +1,4 @@
-import { colors, radius } from "@/src/theme/tokens";
+import { colors, radius, space } from "@/src/theme/tokens";
 import { Pressable, StyleSheet, Text } from "react-native";
 
 type Variant = "primary" | "muted";
@@ -36,8 +36,8 @@ const styles = StyleSheet.create({
   base: {
     minHeight: 44,
     borderRadius: radius.pill,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
+    paddingHorizontal: space.lg,
+    paddingVertical: space.md,
     alignItems: "center",
     justifyContent: "center",
   },

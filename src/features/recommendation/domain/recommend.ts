@@ -38,7 +38,7 @@ function combinedText(spot: Spot) {
 function baseScore(spot: Spot) {
   let score = 0;
   const reasons: string[] = [];
-  const rating = Number((spot as any).rating_avg || 0);
+  const rating = Number(spot.rating_avg || 0);
 
   if (rating >= 4.6) {
     score += 3;
