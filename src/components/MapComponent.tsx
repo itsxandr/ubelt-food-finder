@@ -4,6 +4,13 @@ import React, { useEffect, useRef } from "react";
 import { colors, space } from "@/src/theme/tokens";
 import { StyleSheet, View } from "react-native";
 
+const popupNameColor = colors.text;
+const popupMetaColor = colors.mutedText;
+const popupTagColor = colors.accent;
+const popupPadding = space.sm;
+const pinSvg = `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="12" r="8" fill="${colors.accent}" stroke="${colors.surface}" stroke-width="2"/></svg>`;
+const pinUrl = `url("data:image/svg+xml;utf8,${encodeURIComponent(pinSvg)}")`;
+
 export default function MapComponent({
   allSpots,
   filteredSpots,
@@ -19,12 +26,6 @@ export default function MapComponent({
   // Modern "Voyager" style tiles (Free)
   const styleUrl =
     "https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json";
-  const popupNameColor = colors.text;
-  const popupMetaColor = colors.mutedText;
-  const popupTagColor = colors.accent;
-  const popupPadding = space.sm;
-  const pinSvg = `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="12" r="8" fill="${colors.accent}" stroke="${colors.surface}" stroke-width="2"/></svg>`;
-  const pinUrl = `url("data:image/svg+xml;utf8,${encodeURIComponent(pinSvg)}")`;
 
   useEffect(() => {
     if (!mapContainer.current) return;

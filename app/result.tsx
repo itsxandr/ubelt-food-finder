@@ -4,9 +4,9 @@ import { AppCard } from "@/src/components/ui/AppCard";
 import { AppPageTitle } from "@/src/components/ui/AppPageTitle";
 import { AppStage } from "@/src/components/ui/AppStage";
 import { AppSwipeHint } from "@/src/components/ui/AppSwipeHint";
+import { useSpotSelection } from "@/src/context/SpotSelectionContext";
 import { useSpotLoader } from "@/src/features/home/hooks/useSpotLoader";
 import { buildRecommendations } from "@/src/features/recommendation/domain/recommend";
-import { setSelectedSpot } from "@/src/services/spotSelection";
 import { colors, radius, space, type } from "@/src/theme/tokens";
 import type { Spot } from "@/src/types/spot";
 import { spotToDetailParams } from "@/src/utils/spotNavigation";
@@ -40,6 +40,7 @@ export default function ResultScreen() {
   const { need } = useLocalSearchParams<{ need?: string }>();
   const selectedNeed = need || "Pick for me";
 
+  const { setSelectedSpot } = useSpotSelection();
   const { allSpots, loading } = useSpotLoader();
 
   const recs = useMemo(

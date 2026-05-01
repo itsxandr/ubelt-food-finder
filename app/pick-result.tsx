@@ -4,9 +4,9 @@ import { AppCard } from "@/src/components/ui/AppCard";
 import { AppPageTitle } from "@/src/components/ui/AppPageTitle";
 import { AppStage } from "@/src/components/ui/AppStage";
 import { AppSwipeHint } from "@/src/components/ui/AppSwipeHint";
+import { useSpotSelection } from "@/src/context/SpotSelectionContext";
 import { useSpotLoader } from "@/src/features/home/hooks/useSpotLoader";
 import { buildRecommendations } from "@/src/features/recommendation/domain/recommend";
-import { setSelectedSpot } from "@/src/services/spotSelection";
 import { colors, radius, space, type } from "@/src/theme/tokens";
 import type { Spot } from "@/src/types/spot";
 import { spotToDetailParams } from "@/src/utils/spotNavigation";
@@ -16,14 +16,6 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 
 const ROLL_MS = 1200;
 
-function goToDetail(spot: Spot) {
-  setSelectedSpot(spot);
-  router.push({
-    pathname: "/detail",
-    params: spotToDetailParams(spot),
-  });
-}
-
 export default function PickResultScreen() {
   const { need, featuredId } = useLocalSearchParams<{
     need?: string;
@@ -31,6 +23,7 @@ export default function PickResultScreen() {
   }>();
 
   const selectedNeed = need || "Pick for me";
+  const { setSelectedSpot } = useSpotSelection();
   const { allSpots, loading } = useSpotLoader();
 
   const recs = useMemo(
@@ -110,6 +103,13 @@ export default function PickResultScreen() {
   }
 
   const spot = pool[index];
+  const goToDetail = (target: Spot) => {
+    setSelectedSpot(target);
+    router.push({
+      pathname: "/detail",
+      params: spotToDetailParams(target),
+    });
+  };
 
   return (
     <AppScreen>

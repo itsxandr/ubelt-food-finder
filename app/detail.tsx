@@ -5,7 +5,7 @@ import { AppChip } from "@/src/components/ui/AppChip";
 import { AppPageTitle } from "@/src/components/ui/AppPageTitle";
 import { AppStage } from "@/src/components/ui/AppStage";
 import { AppSwipeHint } from "@/src/components/ui/AppSwipeHint";
-import { getSelectedSpot } from "@/src/services/spotSelection";
+import { useSpotSelection } from "@/src/context/SpotSelectionContext";
 import { colors, radius, size, space, type } from "@/src/theme/tokens";
 import { router, useLocalSearchParams } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
@@ -18,8 +18,14 @@ function parseTags(raw?: string) {
     .filter(Boolean);
 }
 
-function pickDisplayValue(value?: string, fallback?: string, defaultValue?: string) {
-  return value || fallback || defaultValue || "";
+function pickDisplayValue(
+  value?: string,
+  fallback?: string,
+  defaultValue?: string,
+) {
+  if (value !== undefined && value !== null) return value;
+  if (fallback !== undefined && fallback !== null) return fallback;
+  return defaultValue ?? "";
 }
 
 export default function DetailScreen() {
@@ -31,22 +37,24 @@ export default function DetailScreen() {
     tags?: string;
   }>();
 
-  const selectedSpot = getSelectedSpot(id);
-  const tagList = selectedSpot?.vibe_tags?.length
-    ? selectedSpot.vibe_tags
+  const { selectedSpot } = useSpotSelection();
+  const matchedSpot =
+    selectedSpot && (!id || selectedSpot.id === id) ? selectedSpot : undefined;
+  const tagList = matchedSpot?.vibe_tags?.length
+    ? matchedSpot.vibe_tags
     : parseTags(tags);
   const displayName = pickDisplayValue(
-    selectedSpot?.name,
+    matchedSpot?.name,
     name,
     "Unknown spot",
   );
   const displayAddress = pickDisplayValue(
-    selectedSpot?.address,
+    matchedSpot?.address,
     address,
     "Address unavailable",
   );
   const displayPrice = pickDisplayValue(
-    selectedSpot?.price_category,
+    matchedSpot?.price_category,
     price,
     "₱80–₱120",
   );
