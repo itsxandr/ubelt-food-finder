@@ -6,7 +6,7 @@ import {
   saveSession,
 } from "@/src/services/sessionService";
 import { accent, colors, type } from "@/src/theme/tokens";
-import { Feather } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
@@ -45,19 +45,20 @@ const MORE_NEEDS: readonly string[] = [
 
 type NeedKey = (typeof MORE_NEEDS)[number];
 
-const NEED_ICON: Record<NeedKey, keyof typeof Feather.glyphMap> = {
-  "Budget Meal": "minus" as const, // we render ₱ as text
-  "Place to Study": "book-open",
-  Snack: "coffee",
-  "Date Spot": "heart",
-  "TikTok Trending": "trending-up",
-  Coffee: "coffee",
-  Samgyup: "shopping-bag",
-  Inuman: "droplet",
-  Barbecue: "activity",
-  Pastries: "pie-chart",
-  "Pick for me": "shuffle",
-};
+const NEED_ICON: Record<NeedKey, keyof typeof MaterialCommunityIcons.glyphMap> =
+  {
+    "Budget Meal": "currency-php",
+    "Place to Study": "book-open-variant",
+    Snack: "food-apple",
+    "Date Spot": "heart-outline",
+    "TikTok Trending": "trending-up",
+    Coffee: "coffee-outline",
+    Samgyup: "grill-outline",
+    Inuman: "glass-cocktail",
+    Barbecue: "food-steak",
+    Pastries: "cupcake",
+    "Pick for me": "shuffle-variant",
+  };
 
 async function setDontShowNeed(value: boolean) {
   if (Platform.OS === "web") {
@@ -131,22 +132,12 @@ export default function NeedScreen() {
 
   const renderIcon = (need: string, selected: boolean, size: number) => {
     const color = selected ? accent[600] : colors.text;
-
-    if (need === "Budget Meal") {
-      return (
-        <View style={styles.iconWrap}>
-          <Text style={[styles.pesoIcon, { color, fontSize: size + 2 }]}>
-            ₱
-          </Text>
-        </View>
-      );
-    }
-
-    const iconName = NEED_ICON[need as NeedKey] ?? ("help-circle" as const);
+    const iconName =
+      NEED_ICON[need as NeedKey] ?? ("help-circle-outline" as const);
 
     return (
       <View style={styles.iconWrap}>
-        <Feather name={iconName} size={size} color={color} />
+        <MaterialCommunityIcons name={iconName} size={size} color={color} />
       </View>
     );
   };
@@ -180,7 +171,7 @@ export default function NeedScreen() {
                     ]}
                     onPress={() => setSelectedNeed(need)}
                   >
-                    {renderIcon(need, isSelected, 28)}
+                    {renderIcon(need, isSelected, 30)}
                     <Text
                       style={[
                         styles.gridTileText,
@@ -208,7 +199,7 @@ export default function NeedScreen() {
                       style={[styles.row, isSelected && styles.rowSelected]}
                       onPress={() => setSelectedNeed(need)}
                     >
-                      {renderIcon(need, isSelected, 18)}
+                      {renderIcon(need, isSelected, 20)}
                       <Text
                         style={[
                           styles.rowText,
@@ -356,11 +347,6 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     alignItems: "center",
     justifyContent: "center",
-  },
-  pesoIcon: {
-    fontWeight: "800",
-    includeFontPadding: false,
-    textAlignVertical: "center",
   },
 
   moreBtn: {
