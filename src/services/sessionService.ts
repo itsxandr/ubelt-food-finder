@@ -37,6 +37,16 @@ export async function saveSession(patch: Partial<SessionState>) {
   await AsyncStorage.setItem(KEY, JSON.stringify(next));
 }
 
+export async function saveSessionWithContext(patch: Partial<SessionState>) {
+  const lastLocation = await getCurrentLocationSafe();
+  await saveSession({
+    ...patch,
+    lastSeenAt: Date.now(),
+    lastTimeBucket: getTimeBucket(),
+    lastLocation,
+  });
+}
+
 export async function getCurrentLocationSafe(): Promise<
   { latitude: number; longitude: number } | undefined
 > {

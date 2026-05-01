@@ -46,3 +46,7 @@ export const type = {
   body: 14,
   small: 12,
 };
+
+export const size = {
+  imageLg: 168,
+};

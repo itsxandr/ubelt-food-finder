@@ -6,7 +6,7 @@ import { AppPageTitle } from "@/src/components/ui/AppPageTitle";
 import { AppStage } from "@/src/components/ui/AppStage";
 import { AppSwipeHint } from "@/src/components/ui/AppSwipeHint";
 import { getSelectedSpot } from "@/src/services/spotSelection";
-import { colors, radius, space, type } from "@/src/theme/tokens";
+import { colors, radius, size, space, type } from "@/src/theme/tokens";
 import { router, useLocalSearchParams } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
 
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   },
 
   imageMock: {
-    height: space.xxl * 7,
+    height: size.imageLg,
     borderRadius: radius.md,
     borderWidth: 1,
     borderColor: colors.placeholderBorder,

@@ -2,11 +2,7 @@ import { AppScreen } from "@/src/components/layout/AppScreen";
 import { AppButton } from "@/src/components/ui/AppButton";
 import { AppCard } from "@/src/components/ui/AppCard";
 import { AppChip } from "@/src/components/ui/AppChip";
-import {
-  getCurrentLocationSafe,
-  getTimeBucket,
-  saveSession,
-} from "@/src/services/sessionService";
+import { saveSessionWithContext } from "@/src/services/sessionService";
 import { colors, radius, space, type } from "@/src/theme/tokens";
 import {
   BookOpen,
@@ -51,14 +47,9 @@ export default function NeedScreen() {
   const [dontShowEveryTime, setDontShowEveryTime] = useState(false);
 
   const pickNeed = async (need: string) => {
-    const lastLocation = await getCurrentLocationSafe();
-
-    await saveSession({
+    await saveSessionWithContext({
       lastPreference: need,
       dontShowEveryTime,
-      lastSeenAt: Date.now(),
-      lastTimeBucket: getTimeBucket(),
-      lastLocation,
     });
 
     router.push({
